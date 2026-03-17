@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bådprojekt | Morten Raabjerg Nielsen</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #efefef;
+      color: #111;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: auto;
+      padding: 40px 0 60px;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 500;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 12px;
+      max-width: 900px;
+    }
+
+    .hero img {
+      width: 100%;
+      max-width: 1100px;
+      display: block;
+      margin: 0 auto 50px;
+      border-radius: 6px;
+    }
+
+    .project-description {
+      margin-bottom: 70px;
+      max-width: 1050px;
+    }
+
+    .feature {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+
+    .feature.reverse {
+      grid-template-columns: 1.2fr 1fr;
+    }
+
+    .feature-text {
+      padding: 10px;
+    }
+
+    .feature-text h2 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .feature-text p {
+      font-size: 1.05rem;
+      max-width: 500px;
+    }
+
+    .feature-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .feature-images img,
+    .single-image img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .single-image img {
+      max-height: 500px;
+    }
+
+    .skills-section p {
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      background: #1f4e79;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-top: 20px;
+    }
+
+    .thumbnail-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .thumbnail-gallery img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: transform 0.2s ease;
+    }
+
+    .thumbnail-gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .lightbox-content {
+      max-width: 85%;
+      max-height: 80%;
+      border-radius: 4px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    .close,
+    .prev,
+    .next {
+      position: absolute;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      user-select: none;
+      font-weight: bold;
+      z-index: 1000;
+    }
+
+    .close {
+      top: 20px;
+      right: 35px;
+      font-size: 2.5rem;
+    }
+
+    .prev {
+      left: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .next {
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    @media (max-width: 900px) {
+      .feature,
+      .feature.reverse {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-images {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .feature-text h2 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <h1>Totalrenovering af Stål båd</h1>
+
+    <section class="hero">
+      <img src="images/boat_after.jpg" alt="Færdig båd">
+    </section>
+
+    <section class="project-description">
+      <h2>Projekt</h2>
+      <p>
+        Projektet bestod i en totalrenovering af en ældre stålbåd, hvor alt blev fjernet ned til skroget og motorerne.
+        Herefter blev båden genopbygget fra bunden med nye systemer, installationer og interiør.
+      </p>
+      <p>
+        Projektet blev udført i fritiden og finansieret gennem arbejde ved siden af. Målet var at renovere båden
+        og gøre den moderne, både teknisk og visuelt.
+      </p>
+    </section>
+
+    <section class="feature">
+      <div class="feature-text">
+        <h2>Motorer</h2>
+        <p>
+          Renovering af 2x Perkins 6.354 motorer, udskiftning af dyser, filtre, generator og forbedring af kølesystem.
+          Arbejdet bestod primært i at demontere de ydre komponenter, rengøre eller udskifte dem efter behov og bygge
+          systemet op igen.
+        </p>
+      </div>
+
+      <div class="feature-images">
+        <img src="images/engine_after.jpg" alt="Motor efter renovering">
+        <img src="images/engine_before.jpg" alt="Motor før renovering">
+      </div>
+    </section>
+
+    <section class="feature reverse">
+      <div class="feature-images">
+        <img src="images/interior_after.jpg" alt="Interiør efter renovering">
+        <img src="images/interior_before.jpg" alt="Interiør før renovering">
+      </div>
+
+      <div class="feature-text">
+        <h2>Konstruktion</h2>
+        <p>
+          Svejsning (MAG), udskiftning af rust, opbygning af interiør, speciallavede døre, vinduesrammer og møbler.
+          Hele båden blev bygget op igen fra bunden, og alt fra vægge til motorrum og opholdsrum blev fornyet.
+        </p>
+      </div>
+    </section>
+
+    <section class="feature">
+      <div class="feature-text">
+        <h2>El-system</h2>
+        <p>
+          Installation af 12V og 24V systemer, kabeltrækning, dimensionering og opbygning af el-diagrammer.
+          Vi arbejdede med batteripakker, inverter, sikringer og kabelføring. 230V installationen blev lavet med hjælp
+          fra autoriseret fagperson.
+        </p>
+      </div>
+
+      <div class="single-image">
+        <img src="images/boat_after.jpg" alt="Færdig båd og systemer">
+      </div>
+    </section>
+
+    <section class="project-description skills-section">
+      <h2>Kompetencer fra projektet</h2>
+      <p>Stærk hands-on erfaring med mekaniske systemer</p>
+      <p>Forståelse for komplette tekniske systemer</p>
+      <p>Problemløsning i praksis</p>
+      <p>Arbejde med elinstallation og systemintegration</p>
+      <p>Langsigtet projektarbejde og planlægning</p>
+    </section>
+
+    <section class="project-description">
+      <h2>Galleri</h2>
+
+      <div class="thumbnail-gallery">
+        <img src="images/img_001.jpg" alt="Galleri billede 1" onclick="openLightbox(0)">
+        <img src="images/img_002.jpg" alt="Galleri billede 2" onclick="openLightbox(1)">
+        <img src="images/img_003.jpg" alt="Galleri billede 3" onclick="openLightbox(2)">
+        <img src="images/img_004.jpg" alt="Galleri billede 4" onclick="openLightbox(3)">
+        <img src="images/img_005.jpg" alt="Galleri billede 5" onclick="openLightbox(4)">
+        <img src="images/img_006.jpg" alt="Galleri billede 6" onclick="openLightbox(5)">
+        <img src="images/img_007.jpg" alt="Galleri billede 7" onclick="openLightbox(6)">
+        <img src="images/img_008.jpg" alt="Galleri billede 8" onclick="openLightbox(7)">
+        <img src="images/img_009.jpg" alt="Galleri billede 9" onclick="openLightbox(8)">
+        <img src="images/img_010.jpg" alt="Galleri billede 10" onclick="openLightbox(9)">
+        <img src="images/img_011.jpg" alt="Galleri billede 11" onclick="openLightbox(10)">
+        <img src="images/img_012.jpg" alt="Galleri billede 12" onclick="openLightbox(11)">
+        <img src="images/img_013.jpg" alt="Galleri billede 13" onclick="openLightbox(12)">
+        <img src="images/img_014.jpg" alt="Galleri billede 14" onclick="openLightbox(13)">
+        <img src="images/img_015.jpg" alt="Galleri billede 15" onclick="openLightbox(14)">
+        <img src="images/img_016.jpg" alt="Galleri billede 16" onclick="openLightbox(15)">
+        <img src="images/img_017.jpg" alt="Galleri billede 17" onclick="openLightbox(16)">
+        <img src="images/img_018.jpg" alt="Galleri billede 18" onclick="openLightbox(17)">
+        <img src="images/img_019.jpg" alt="Galleri billede 19" onclick="openLightbox(18)">
+        <img src="images/img_020.jpg" alt="Galleri billede 20" onclick="openLightbox(19)">
+        <img src="images/img_021.jpg" alt="Galleri billede 21" onclick="openLightbox(20)">
+      </div>
+    </section>
+
+    <section>
+      <a class="btn" href="index.html">← Tilbage til forsiden</a>
+    </section>
+
+  </div>
+
+  <div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+    <img class="lightbox-content" id="lightbox-img" alt="Galleri billede">
+    <span class="next" onclick="changeSlide(1)">&#10095;</span>
+  </div>
+
+  <script>
+    const images = [
+      "images/img_001.jpg",
+      "images/img_002.jpg",
+      "images/img_003.jpg",
+      "images/img_004.jpg",
+      "images/img_005.jpg",
+      "images/img_006.jpg",
+      "images/img_007.jpg",
+      "images/img_008.jpg",
+      "images/img_009.jpg",
+      "images/img_010.jpg",
+      "images/img_011.jpg",
+      "images/img_012.jpg",
+      "images/img_013.jpg",
+      "images/img_014.jpg",
+      "images/img_015.jpg",
+      "images/img_016.jpg",
+      "images/img_017.jpg",
+      "images/img_018.jpg",
+      "images/img_019.jpg",
+      "images/img_020.jpg",
+      "images/img_021.jpg"
+    ];
+
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      document.getElementById("lightbox").style.display = "flex";
+      document.getElementById("lightbox-img").src = images[currentIndex];
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+
+    function changeSlide(step) {
+      currentIndex += step;
+
+      if (currentIndex < 0) {
+        currentIndex = images.length - 1;
+      }
+
+      if (currentIndex >= images.length) {
+        currentIndex = 0;
+      }
+
+      document.getElementById("lightbox-img").src = images[currentIndex];
+    }
+
+    document.addEventListener("keydown", function(event) {
+      const lightbox = document.getElementById("lightbox");
+      if (lightbox.style.display === "flex") {
+        if (event.key === "ArrowRight") changeSlide(1);
+        if (event.key === "ArrowLeft") changeSlide(-1);
+        if (event.key === "Escape") closeLightbox();
+      }
+    });
+
+    document.getElementById("lightbox").addEventListener("click", function(e) {
+      if (e.target.id === "lightbox") {
+        closeLightbox();
+      }
+    });
+  </script>
+
+</body>
+</html>
