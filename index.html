@@ -71,7 +71,7 @@
     }
 
     .hero {
-      padding: 72px 0 48px;
+      padding: 72px 0 56px;
     }
 
     .hero-grid {
@@ -86,6 +86,7 @@
       line-height: 1.05;
       margin-bottom: 10px;
       font-weight: 400;
+      color: var(--accent);
     }
 
     .hero-text h3 {
@@ -96,7 +97,7 @@
     }
 
     .hero-text p {
-      max-width: 700px;
+      max-width: 720px;
       color: var(--muted);
       margin-bottom: 24px;
       font-size: 1.05rem;
@@ -131,7 +132,7 @@
     }
 
     section {
-      padding: 48px 0;
+      padding: 40px 0;
     }
 
     section h2 {
@@ -139,6 +140,76 @@
       margin-bottom: 20px;
       font-size: 1.8rem;
       font-weight: 600;
+    }
+
+    .box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .experience-list {
+      display: grid;
+      gap: 22px;
+    }
+
+    .experience-item {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .experience-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #f1f1f1;
+      object-fit: contain;
+      padding: 8px;
+    }
+
+    .experience-item h3 {
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .experience-item .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .experience-item p {
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .skills-box h3 {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .skills-box ul {
+      padding-left: 18px;
+    }
+
+    .skills-box li {
+      margin-bottom: 7px;
+      font-weight: 400;
     }
 
     .projects-grid {
@@ -213,6 +284,7 @@
 
     .contact-box p {
       font-weight: 400;
+      margin-bottom: 8px;
     }
 
     footer {
@@ -225,8 +297,12 @@
     }
 
     @media (max-width: 900px) {
-      .hero-grid {
+      .hero-grid,
+      .skills-grid {
         grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
         text-align: center;
       }
 
@@ -248,6 +324,17 @@
         font-size: 1.4rem;
       }
     }
+
+    @media (max-width: 600px) {
+      .experience-item {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-logo {
+        width: 56px;
+        height: 56px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -256,7 +343,8 @@
       <nav>
         <h1>Morten Raabjerg Nielsen</h1>
         <ul>
-          <li><a href="#om">Om mig</a></li>
+          <li><a href="#erfaring">Erfaring</a></li>
+          <li><a href="#kompetencer">Kompetencer</a></li>
           <li><a href="#projekter">Projekter</a></li>
           <li><a href="#kontakt">Kontakt</a></li>
         </ul>
@@ -271,9 +359,9 @@
           <h2>Morten<br>Raabjerg Nielsen</h2>
           <h3>Diplomingeniør i maskinteknik</h3>
           <p>
-            Jeg er diplomingeniørstuderende i maskinteknik ved Aarhus Universitet med interesse for
-            R&D, mekatronik, robotik, automatisering og produktudvikling. Jeg motiveres af projekter,
-            hvor mekanik, elektronik og software kombineres i funktionelle løsninger.
+            Jeg er diplomingeniørstuderende i maskinteknik ved Aarhus Universitet med interesse for R&D, mekatronik,
+            robotik, automatisering og produktudvikling. Jeg motiveres af projekter, hvor mekanik, elektronik og software
+            kombineres i funktionelle løsninger.
           </p>
           <a class="btn" href="CV.pdf" target="_blank">Download CV</a>
           <a class="btn" href="https://www.linkedin.com/in/morten-raabjerg-nielsen-1173682a6/" target="_blank">LinkedIn</a>
@@ -285,16 +373,77 @@
       </div>
     </section>
 
-    <section id="om">
+    <section id="erfaring">
       <div class="container">
-        <h2>Om mig</h2>
-        <div class="contact-box">
-          <p>
-            Jeg har erfaring fra udviklingsarbejde hos Sulfilogger, hvor jeg har arbejdet med prototyper,
-            automatisering og produktionsnære løsninger. Derudover har jeg arbejdet med robotprojekter
-            inden for computer vision og mekatronik samt større hands-on projekter som totalrenovering
-            af en stålbåd.
-          </p>
+        <h2>Erfaring</h2>
+        <div class="box">
+          <div class="experience-list">
+
+            <div class="experience-item">
+              <img class="experience-logo" src="images/sulfilog_logo.jpg" alt="Sulfilogger logo">
+              <div>
+                <h3>Studentermedhjælper – R&D, Sulfilogger</h3>
+                <div class="meta">Aug 2025 – nu</div>
+                <p>
+                  Arbejder i udviklingsafdelingen med prototyper, test og produktionsnære løsninger.
+                </p>
+              </div>
+            </div>
+
+            <div class="experience-item">
+              <img class="experience-logo" src="images/sulfilog_logo.jpg" alt="Sulfilogger logo">
+              <div>
+                <h3>Praktik – R&D, Sulfilogger</h3>
+                <div class="meta">Jan 2025 – Jun 2025</div>
+                <p>
+                  Arbejdede med udvikling af automatiseringsløsninger, CAD, prototypefremstilling og procesforbedringer.
+                </p>
+              </div>
+            </div>
+
+            <div class="experience-item">
+              <img class="experience-logo" src="images/danishcrown_logo.png" alt="Danish Crown logo">
+              <div>
+                <h3>Lagermedarbejder, Danish Crown</h3>
+                <div class="meta">Nov 2019 – Jul 2022 + sommerjob 2023–2025</div>
+                <p>
+                  Arbejde med logistik, truckkørsel, læsning og aflæsning samt håndtering af varer i produktionsmiljø.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kompetencer">
+      <div class="container">
+        <h2>Kompetencer</h2>
+        <div class="skills-grid">
+          <div class="box skills-box">
+            <h3>Tekniske kompetencer</h3>
+            <ul>
+              <li>SolidWorks / CAD</li>
+              <li>Arbejdstegninger og konstruktion</li>
+              <li>Python, MATLAB, LabVIEW og Arduino</li>
+              <li>Computer Vision og sensorintegration</li>
+              <li>Mekatronik og robotik</li>
+              <li>FEM</li>
+            </ul>
+          </div>
+
+          <div class="box skills-box">
+            <h3>Praktiske kompetencer</h3>
+            <ul>
+              <li>Hands-on ingeniørarbejde</li>
+              <li>Svejsning (MAG)</li>
+              <li>Motorer og mekaniske systemer</li>
+              <li>El-systemer (12V/24V)</li>
+              <li>Systemintegration</li>
+              <li>Problemløsning i praksis</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
