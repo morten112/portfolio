@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CryoEgg Robot | Morten Raabjerg Nielsen</title>
+
   <style>
     :root {
       --bg: #f7f7f7;
@@ -33,19 +34,54 @@
     }
 
     header {
-      background: white;
+      background: var(--card);
       border-bottom: 1px solid var(--border);
-      padding: 20px 0;
     }
 
-    nav a {
-      text-decoration: none;
+    .nav {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 16px 0;
+    }
+
+    .nav-title {
+      font-size: 1.2rem;
+      font-weight: 700;
       color: var(--accent);
-      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .nav-links a:hover,
+    .nav-title:hover {
+      color: var(--accent);
     }
 
     main {
       padding: 48px 0;
+    }
+
+    .box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
     }
 
     .hero-img {
@@ -53,6 +89,18 @@
       border-radius: 14px;
       margin: 20px 0 30px;
       border: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #eef4fa;
+      color: var(--accent);
+      border: 1px solid #d4e2ef;
+      font-size: 0.9rem;
+      font-weight: 700;
     }
 
     h1 {
@@ -77,13 +125,6 @@
       margin-bottom: 14px;
     }
 
-    .box {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
-    }
-
     .btn {
       display: inline-block;
       margin-top: 20px;
@@ -97,11 +138,19 @@
     }
   </style>
 </head>
+
 <body>
+
   <header>
     <div class="container">
-      <nav>
-        <a href="index.html">← Tilbage til forsiden</a>
+      <nav class="nav">
+        <a class="nav-title" href="index.html">Morten Raabjerg Nielsen</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Forside</a></li>
+          <li><a href="#projekt">Projekt</a></li>
+          <li><a href="#rolle">Rolle</a></li>
+          <li><a href="#teknologi">Teknologi</a></li>
+        </ul>
       </nav>
     </div>
   </header>
@@ -109,47 +158,53 @@
   <main>
     <div class="container">
       <div class="box">
+
+        <span class="eyebrow">Bachelorprojekt · Robotik</span>
+
         <h1>CryoEgg Robot</h1>
+
         <p>
-          Bachelorprojekt om udvikling af en robot, der kan transportere et CryoEgg længere ind
-          i smeltevandsgrotter. CryoEgg er en sensor, der måler tryk, temperatur og elektrisk konduktivitet.
+          Bachelorprojekt med fokus på udvikling af en robot til transport af CryoEgg i smeltevandsgrotter.
+          Systemet er designet til at indsamle data fra utilgængelige områder ved hjælp af sensorintegration og styring.
         </p>
 
         <img class="hero-img" src="images/cryoegg.jpg" alt="CryoEgg robot">
 
-        <h2>Projektets formål</h2>
+        <h2 id="projekt">Projekt</h2>
         <p>
-          Formålet er at udvikle en robot, der kan sænkes ned i ishuller og derefter bevæge sig
-          længere ind i grotterne for at indsamle data i områder, som er svære at nå manuelt.
+          Udvikling af en løsning, der kan sænkes ned i ishuller og bevæge sig videre ind i grotterne
+          for at udføre målinger i områder, hvor manuel adgang er begrænset.
         </p>
 
-        <h2>Min rolle</h2>
+        <h2 id="rolle">Min rolle</h2>
         <ul>
-          <li>Softwareudvikling</li>
-          <li>Systemstruktur og overblik</li>
-          <li>CAD-arbejde</li>
+          <li>Udvikling af Python-baseret styring</li>
+          <li>Systemstruktur og integration</li>
+          <li>CAD og mekanisk design</li>
           <li>Design af gearbox med planetgear</li>
         </ul>
 
-        <h2>Teknologier</h2>
+        <h2 id="teknologi">Teknologier</h2>
         <ul>
           <li>Python</li>
+          <li>CAD</li>
+          <li>Sensorer</li>
           <li>Kamera</li>
-          <li>IMU</li>
           <li>Motorstyring</li>
-          <li>Fjernstyring via controller</li>
-          <li>100 meter kommunikationskabel</li>
+          <li>Systemintegration</li>
         </ul>
 
         <h2>Hvad jeg lærte</h2>
         <p>
-          Projektet har givet mig erfaring med samspillet mellem mekanik, elektronik og software i et
-          robotsystem samt arbejdet med strukturering af et tværfagligt projekt.
+          Erfaring med udvikling af et samlet system, hvor mekanik, elektronik og software integreres.
+          Arbejde med strukturering af et teknisk projekt og samspillet mellem systemets komponenter.
         </p>
 
         <a class="btn" href="index.html">Tilbage til forsiden</a>
+
       </div>
     </div>
   </main>
+
 </body>
 </html>
