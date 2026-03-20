@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Praktik – Sulfilogger | Morten Raabjerg Nielsen</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --card: #ffffff;
+      --text: #1f1f1f;
+      --muted: #666;
+      --accent: #1f4e79;
+      --border: #dddddd;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    nav h1 {
+      font-size: 1.3rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .site-title {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .hero {
+      padding: 56px 0 34px;
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #eef4fa;
+      color: var(--accent);
+      border: 1px solid #d4e2ef;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .hero-card p {
+      color: var(--muted);
+      max-width: 900px;
+      margin-bottom: 18px;
+      font-weight: 400;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      border: 1px solid var(--accent);
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--accent);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    section {
+      padding: 18px 0 34px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .fact {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .fact .label {
+      display: block;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .fact .value {
+      font-weight: 600;
+    }
+
+    .info-card,
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .info-card p,
+    .project-card p {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .projects-wrapper {
+      display: grid;
+      gap: 22px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 14px;
+    }
+
+    .sub-box {
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .sub-box p {
+      color: var(--muted);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #eef4fa;
+      color: var(--accent);
+      border: 1px solid #d4e2ef;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .skills-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .skills-box ul {
+      padding-left: 18px;
+    }
+
+    .skills-box li {
+      margin-bottom: 8px;
+      font-weight: 400;
+    }
+
+    footer {
+      padding: 34px 0 46px;
+      color: var(--muted);
+      text-align: center;
+      font-weight: 400;
+    }
+
+    @media (max-width: 900px) {
+      .facts-grid,
+      .project-grid,
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .facts-grid,
+      .project-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .hero-card,
+      .info-card,
+      .project-card,
+      .skills-box {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <h1><a class="site-title" href="index.html">Morten Raabjerg Nielsen</a></h1>
+        <ul>
+          <li><a href="index.html">Forside</a></li>
+          <li><a href="#projekter">Projekter</a></li>
+          <li><a href="#kompetencer">Kompetencer</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <span class="eyebrow">Praktik · Sulfilogger · 2025</span>
+          <h1>Praktik i udviklingsafdelingen</h1>
+          <p>
+            Praktikophold i udviklingsafdelingen hos Sulfilogger med fokus på udvikling af løsninger til produktion og produktforbedringer.
+            Arbejdet bestod i at udvikle, teste og implementere systemer, der understøtter produktionen og øger kapacitet og ensartethed.
+          </p>
+          <p>
+            Siden er bevidst holdt i en neutral form og beskriver opgaverne overordnet med fokus på arbejdsområder,
+            teknisk indhold og resultater.
+          </p>
+
+          <div class="button-row">
+            <a class="btn btn-primary" href="#projekter">Se projekter</a>
+            <a class="btn btn-secondary" href="#kompetencer">Se kompetencer</a>
+            <a class="btn btn-secondary" href="index.html">Tilbage til forsiden</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="facts-grid">
+          <div class="fact">
+            <span class="label">Virksomhed</span>
+            <span class="value">Sulfilogger</span>
+          </div>
+          <div class="fact">
+            <span class="label">Afdeling</span>
+            <span class="value">Udvikling</span>
+          </div>
+          <div class="fact">
+            <span class="label">Fokus</span>
+            <span class="value">Produktion og forbedringer</span>
+          </div>
+          <div class="fact">
+            <span class="label">Arbejdsform</span>
+            <span class="value">CAD · prototyper · test</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="info-card">
+          <h2>Arbejdsområder</h2>
+          <p>
+            Under praktikken arbejdede jeg med udvikling af både nye løsninger og forbedringer af eksisterende processer i produktionen.
+            Opgaverne spændte fra idé og design til prototype, test og implementering. Fokus var især på automatisering,
+            kapacitetsforbedringer og udvikling af praktiske systemer til daglig brug i produktionen.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projekter">
+      <div class="container">
+        <h2>Udvalgte praktikprojekter</h2>
+
+        <div class="projects-wrapper">
+          <article class="project-card">
+            <h3>1. Limdispenser til produktionen</h3>
+            <p>
+              Udvikling af en semi-automatisk løsning til dispensering af 2-komponent lim i produktionen.
+              Formålet var at gøre processen mere ensartet og mindre fysisk belastende end manuel påføring.
+            </p>
+
+            <div class="project-grid">
+              <div class="sub-box">
+                <h3>Fokus</h3>
+                <p>
+                  Automatisering af en manuel proces og udvikling af en løsning, der kunne understøtte produktionens arbejde i praksis.
+                </p>
+              </div>
+
+              <div class="sub-box">
+                <h3>Arbejdet omfattede</h3>
+                <p>
+                  Design, opbygning, styring og test af systemet samt tilpasning af funktionen til den konkrete anvendelse i produktionen.
+                </p>
+              </div>
+            </div>
+
+            <div class="tag-list">
+              <span class="tag">Automatisering</span>
+              <span class="tag">Styring</span>
+              <span class="tag">Prototype</span>
+              <span class="tag">Test</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <h3>2. Vibrationssystem til ny produktionsproces</h3>
+            <p>
+              Udvikling af et vibrationssystem, der understøttede en ny måde at håndtere materiale i produktionen på.
+              Løsningen blev udviklet som et praktisk system til daglig brug og blev efterfølgende implementeret.
+            </p>
+
+            <div class="project-grid">
+              <div class="sub-box">
+                <h3>Fokus</h3>
+                <p>
+                  Udvikling af et system til håndtering af sand i produktionen, så materialet kunne fordeles korrekt under påfyldning.
+                </p>
+              </div>
+
+              <div class="sub-box">
+                <h3>Arbejdet omfattede</h3>
+                <p>
+                  CAD-arbejde, arbejdstegninger, bestilling af dele, opbygning og afprøvning af den færdige løsning.
+                </p>
+              </div>
+            </div>
+
+            <div class="tag-list">
+              <span class="tag">CAD</span>
+              <span class="tag">Arbejdstegninger</span>
+              <span class="tag">Prototype</span>
+              <span class="tag">Implementering</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <h3>3. Vacuum set-up med øget kapacitet</h3>
+            <p>
+              Arbejde med udvikling af et nyt vacuum set-up til produktionen, hvor kapaciteten blev øget.
+              Den tidligere løsning håndterede én enhed ad gangen, mens det nye set-up blev udviklet til at håndtere flere samtidigt.
+            </p>
+
+            <div class="project-grid">
+              <div class="sub-box">
+                <h3>Fokus</h3>
+                <p>
+                  Øget kapaciten og udvikling af en løsning, der bedre understøttede den ønskede produktionsproces.
+                </p>
+              </div>
+
+              <div class="sub-box">
+                <h3>Arbejdet omfattede</h3>
+                <p>
+                  Designarbejde, arbejdstegninger og bidrag til den samlede konstruktion med fokus på funktion og anvendelse i produktionen.
+                </p>
+              </div>
+            </div>
+
+            <div class="tag-list">
+              <span class="tag">Kapacitetsforbedring</span>
+              <span class="tag">Konstruktion</span>
+              <span class="tag">Arbejdstegninger</span>
+              <span class="tag">Produktion</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kompetencer">
+      <div class="container">
+        <h2>Kompetencer fra praktikken</h2>
+        <div class="skills-grid">
+          <div class="skills-box">
+            <h3>Teknisk arbejde</h3>
+            <ul>
+              <li>CAD og 3D-modellering</li>
+              <li>Arbejdstegninger til fremstilling</li>
+              <li>Prototypeudvikling og 3D-print</li>
+              <li>Opbygning og test af tekniske systemer</li>
+              <li>Udvikling af produktionsnære løsninger</li>
+            </ul>
+          </div>
+
+          <div class="skills-box">
+            <h3>Arbejdsområder</h3>
+            <ul>
+              <li>Automatisering af manuelle processer</li>
+              <li>Forbedring af kapacitet i produktionen</li>
+              <li>Udvikling af nye systemer til produktionen</li>
+              <li>Fra idé og design til færdig løsning</li>
+              <li>Tværfagligt samarbejde i udvikling og produktion</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Morten Raabjerg Nielsen</p>
+    </div>
+  </footer>
+</body>
+</html>
