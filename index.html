@@ -190,28 +190,6 @@
       font-weight: 400;
     }
 
-    .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .skills-box h3 {
-      font-size: 1.05rem;
-      margin-bottom: 10px;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .skills-box ul {
-      padding-left: 18px;
-    }
-
-    .skills-box li {
-      margin-bottom: 7px;
-      font-weight: 400;
-    }
-
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -273,6 +251,28 @@
       color: var(--accent);
       border: 1px solid #d5e3f0;
       font-weight: 500;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .skills-box h3 {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .skills-box ul {
+      padding-left: 18px;
+    }
+
+    .skills-box li {
+      margin-bottom: 7px;
+      font-weight: 400;
     }
 
     .contact-box {
@@ -344,8 +344,8 @@
         <h1>Morten Raabjerg Nielsen</h1>
         <ul>
           <li><a href="#erfaring">Erfaring</a></li>
-          <li><a href="#kompetencer">Kompetencer</a></li>
           <li><a href="#projekter">Projekter</a></li>
+          <li><a href="#kompetencer">Kompetencer</a></li>
           <li><a href="#kontakt">Kontakt</a></li>
         </ul>
       </nav>
@@ -360,11 +360,12 @@
           <h3>Diplomingeniør i maskinteknik</h3>
           <p>
             Jeg er diplomingeniørstuderende i maskinteknik ved Aarhus Universitet med interesse for R&D, mekatronik,
-            robotik, automatisering og produktudvikling. Jeg motiveres af projekter, hvor mekanik, elektronik og software
-            kombineres i funktionelle løsninger.
+            automatisering og produktudvikling. Jeg motiveres af projekter, hvor mekanik, elektronik og software
+            kombineres i funktionelle løsninger. 
+	    Jeg har praktisk erfaring med udvikling og systemintegration gennem projekter og arbejde i R&D og arbejder struktureret og ansvarsbevidst med fokus på fremdrift og koordinering i tekniske projekter.
           </p>
           <a class="btn" href="CV.pdf" target="_blank">Download CV</a>
-          <a class="btn" href="https://www.linkedin.com/in/morten-raabjerg-nielsen-1173682a6/" target="_blank">LinkedIn</a>
+          <a class="btn" href="https://www.linkedin.com/in/morten-raabjerg-nielsen" target="_blank">LinkedIn</a>
         </div>
 
         <div class="hero-image">
@@ -417,37 +418,6 @@
       </div>
     </section>
 
-    <section id="kompetencer">
-      <div class="container">
-        <h2>Kompetencer</h2>
-        <div class="skills-grid">
-          <div class="box skills-box">
-            <h3>Tekniske kompetencer</h3>
-            <ul>
-              <li>SolidWorks / CAD</li>
-              <li>Arbejdstegninger og konstruktion</li>
-              <li>Python, MATLAB, LabVIEW og Arduino</li>
-              <li>Computer Vision og sensorintegration</li>
-              <li>Mekatronik og robotik</li>
-              <li>FEM</li>
-            </ul>
-          </div>
-
-          <div class="box skills-box">
-            <h3>Praktiske kompetencer</h3>
-            <ul>
-              <li>Hands-on ingeniørarbejde</li>
-              <li>Svejsning (MAG)</li>
-              <li>Motorer og mekaniske systemer</li>
-              <li>El-systemer (12V/24V)</li>
-              <li>Systemintegration</li>
-              <li>Problemløsning i praksis</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="projekter">
       <div class="container">
         <h2>Projekter</h2>
@@ -460,11 +430,11 @@
                 <p>Robot til udforskning af smeltevandsgrotter med sensor, kamera og motorstyring.</p>
                 <div class="tag-list">
                   <span class="tag">Python</span>
-                  <span class="tag">IMU</span>
                   <span class="tag">CAD</span>
-                  <span class="tag">Robotics</span>
-                  <span class="tag">Mechatronic</span>
-                  <span class="tag">Robot styring</span>
+                  <span class="tag">Sensorer</span>
+                  <span class="tag">Kamera</span>
+                  <span class="tag">Styring</span>
+                  <span class="tag">Systemintegration</span>
                 </div>
               </div>
             </article>
@@ -480,14 +450,14 @@
                   <span class="tag">Python</span>
                   <span class="tag">Computer Vision</span>
                   <span class="tag">OAK-D Lite</span>
-                  <span class="tag">Sensor</span>
+                  <span class="tag">Sensorer</span>
                   <span class="tag">Databehandling</span>
                 </div>
               </div>
             </article>
           </a>
 
-          <a class="project-link" href="praktikprojekter.html">
+          <a class="project-link" href="praktik.html">
             <article class="card">
               <img src="images/sulfilog_logo.jpg" alt="Praktikprojekter">
               <div class="card-content">
@@ -510,13 +480,44 @@
                 <h3>Totalrenovering af stålbåd</h3>
                 <p>Treårigt projekt med motorer, elinstallationer og teknisk systemopbygning.</p>
                 <div class="tag-list">
-                  <span class="tag">Motorer</span>
                   <span class="tag">El-systemer</span>
-                  <span class="tag">Svejsning</span>
+                  <span class="tag">System integration</span>
+                  <span class="tag">Problemløsning</span>
                 </div>
               </div>
             </article>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="kompetencer">
+      <div class="container">
+        <h2>Kompetencer</h2>
+        <div class="skills-grid">
+          <div class="box skills-box">
+            <h3>Tekniske kompetencer</h3>
+            <ul>
+              <li>SolidWorks / CAD</li>
+              <li>Arbejdstegninger og konstruktion</li>
+              <li>PCB design</li>
+              <li>Python, MATLAB, LabVIEW og Arduino</li>
+              <li>Computer vision og sensorintegration</li>
+              <li>FEM</li>
+            </ul>
+          </div>
+
+          <div class="box skills-box">
+            <h3>Arbejdsform</h3>
+            <ul>
+              <li>Struktureret og ansvarsbevidst</li>
+              <li>Tværfagligt samarbejde</li>
+              <li>Praktisk problemløsning</li>
+              <li>Erfaring med længerevarende projekter</li>
+              <li>Forståelse for komplekse tekniske systemer</li>
+              <li>Systematisk tilgang til opgaver</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -527,7 +528,7 @@
         <div class="contact-box">
           <p><strong>Email:</strong> mortenraabjerg98@gmail.com</p>
           <p><strong>Telefon:</strong> 20989215</p>
-          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/morten-raabjerg-nielsen-1173682a6/" target="_blank">linkedin.com/in/morten-raabjerg-nielsen-1173682a6</a></p>
+          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/morten-raabjerg-nielsen" target="_blank">linkedin.com/in/morten-raabjerg-nielsen</a></p>
         </div>
       </div>
     </section>
