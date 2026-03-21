@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CryoEgg Robot | Morten Raabjerg Nielsen</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -13,6 +17,7 @@
       --muted: #666;
       --accent: #1f4e79;
       --border: #dddddd;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
 
     * {
@@ -21,74 +26,84 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Raleway', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.7;
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: var(--accent);
     }
 
     .container {
-      width: min(950px, 92%);
+      width: min(1100px, 92%);
       margin: 0 auto;
     }
 
     header {
       background: var(--card);
       border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    .nav {
-      min-height: 76px;
+    nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 16px;
       flex-wrap: wrap;
-      padding: 16px 0;
     }
 
-    .nav-title {
-      font-size: 1.2rem;
-      font-weight: 700;
+    nav h1 {
+      font-size: 1.3rem;
       color: var(--accent);
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .site-title {
+      color: inherit;
       text-decoration: none;
     }
 
-    .nav-links {
+    nav ul {
       list-style: none;
       display: flex;
       gap: 18px;
       flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
     }
 
-    .nav-links a {
+    nav a {
       text-decoration: none;
       color: var(--text);
-      font-weight: 600;
+      font-weight: 500;
     }
 
-    .nav-links a:hover,
-    .nav-title:hover {
-      color: var(--accent);
+    .hero {
+      padding: 56px 0 40px;
     }
 
-    main {
-      padding: 48px 0;
-    }
-
-    .box {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
-    }
-
-    .hero-img {
-      width: 100%;
-      border-radius: 14px;
-      margin: 20px 0 30px;
-      border: 1px solid var(--border);
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+      align-items: center;
     }
 
     .eyebrow {
@@ -103,108 +118,381 @@
       font-weight: 700;
     }
 
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 12px;
-      color: var(--accent);
-    }
-
-    h2 {
-      margin-top: 28px;
-      margin-bottom: 12px;
-      color: var(--accent);
-      font-size: 1.3rem;
-    }
-
-    p {
+    .hero h1 {
+      font-size: 2.6rem;
+      line-height: 1.15;
       margin-bottom: 14px;
+      color: var(--accent);
+      font-weight: 700;
     }
 
-    ul {
-      padding-left: 20px;
-      margin-bottom: 14px;
+    .hero p {
+      color: var(--muted);
+      margin-bottom: 20px;
+      max-width: 720px;
+      font-weight: 400;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     .btn {
       display: inline-block;
-      margin-top: 20px;
-      padding: 12px 18px;
-      border-radius: 8px;
       text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-weight: 600;
       border: 1px solid var(--accent);
-      color: white;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
       background: var(--accent);
-      font-weight: bold;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--accent);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero-image {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    section {
+      padding: 28px 0 34px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      color: var(--text);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .fact {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .fact .label {
+      display: block;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .fact .value {
+      font-weight: 600;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card p {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .feature-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 26px;
+    }
+
+    .feature-section.reverse {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .feature-text {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-text p {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .feature-image {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 320px;
+      background: #eaeaea;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #eef4fa;
+      color: var(--accent);
+      border: 1px solid #d4e2ef;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    footer {
+      padding: 34px 0 46px;
+      color: var(--muted);
+      text-align: center;
+      font-weight: 400;
+    }
+
+    @media (max-width: 1000px) {
+      .facts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 820px) {
+      .hero-grid,
+      .project-grid,
+      .feature-section,
+      .feature-section.reverse {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .facts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-image img {
+        min-height: 240px;
+      }
     }
   </style>
 </head>
-
 <body>
-
   <header>
     <div class="container">
-      <nav class="nav">
-        <a class="nav-title" href="index.html">Morten Raabjerg Nielsen</a>
-        <ul class="nav-links">
+      <nav>
+        <h1><a class="site-title" href="index.html">Morten Raabjerg Nielsen</a></h1>
+        <ul>
           <li><a href="index.html">Forside</a></li>
           <li><a href="#projekt">Projekt</a></li>
-          <li><a href="#rolle">Rolle</a></li>
-          <li><a href="#teknologi">Teknologi</a></li>
+          <li><a href="#system">System</a></li>
+          <li><a href="#gear">Gearkasse</a></li>
+          <li><a href="#software">Software</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main>
-    <div class="container">
-      <div class="box">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Bachelorprojekt · ROV · 2025</span>
+          <h1>CryoEgg Robot</h1>
+          <p>
+            Bachelorprojekt med fokus på udvikling af en ROV til kontrolleret indsættelse af CryoEGG i moulin-huller.
+            Projektet blev udført i samarbejde med forskere inden for glaciologi, hvor målet var at udvikle en løsning,
+            der kan transportere og frigive sensoren i utilgængelige områder under isen.
+          </p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="#projekt">Projekt</a>
+            <a class="btn btn-secondary" href="#gear">Gearkasse</a>
+            <a class="btn btn-secondary" href="#software">Software</a>
+          </div>
+        </div>
 
-        <span class="eyebrow">Bachelorprojekt · Robotik</span>
-
-        <h1>CryoEgg Robot</h1>
-
-        <p>
-          Bachelorprojekt med fokus på udvikling af en robot til transport af CryoEgg i smeltevandsgrotter.
-          Systemet er designet til at indsamle data fra utilgængelige områder ved hjælp af sensorintegration og styring.
-        </p>
-
-        <img class="hero-img" src="images/cryoegg.jpg" alt="CryoEgg robot">
-
-        <h2 id="projekt">Projekt</h2>
-        <p>
-          Udvikling af en løsning, der kan sænkes ned i ishuller og bevæge sig videre ind i grotterne
-          for at udføre målinger i områder, hvor manuel adgang er begrænset.
-        </p>
-
-        <h2 id="rolle">Min rolle</h2>
-        <ul>
-          <li>Udvikling af Python-baseret styring</li>
-          <li>Systemstruktur og integration</li>
-          <li>CAD og mekanisk design</li>
-          <li>Design af gearbox med planetgear</li>
-        </ul>
-
-        <h2 id="teknologi">Teknologier</h2>
-        <ul>
-          <li>Python</li>
-          <li>CAD</li>
-          <li>Sensorer</li>
-          <li>Kamera</li>
-          <li>Motorstyring</li>
-          <li>Systemintegration</li>
-        </ul>
-
-        <h2>Hvad jeg lærte</h2>
-        <p>
-          Erfaring med udvikling af et samlet system, hvor mekanik, elektronik og software integreres.
-          Arbejde med strukturering af et teknisk projekt og samspillet mellem systemets komponenter.
-        </p>
-
-        <a class="btn" href="index.html">Tilbage til forsiden</a>
-
+        <div class="hero-image">
+          <img src="images/cryoegg.jpg" alt="CryoEgg robot">
+        </div>
       </div>
-    </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="facts-grid">
+          <div class="fact">
+            <span class="label">Type</span>
+            <span class="value">Bachelorprojekt</span>
+          </div>
+          <div class="fact">
+            <span class="label">Platform</span>
+            <span class="value">ROV</span>
+          </div>
+          <div class="fact">
+            <span class="label">Fokus</span>
+            <span class="value">Deployering af CryoEGG</span>
+          </div>
+          <div class="fact">
+            <span class="label">Område</span>
+            <span class="value">Mekanik · styring · integration</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projekt">
+      <div class="container">
+        <h2>Projekt</h2>
+        <div class="project-grid">
+          <div class="card">
+            <h3>Formål</h3>
+            <p>
+              Projektet havde til formål at udvikle en ROV, der kan transportere og frigive et CryoEGG i moulin-huller.
+              Løsningen skulle gøre det muligt at indsætte sensoren mere kontrolleret end ved traditionel nedsænkning med line.
+            </p>
+          </div>
+
+          <div class="card" id="system">
+            <h3>System</h3>
+            <p>
+              Robotten blev udviklet som et samlet system, hvor mekanik, elektronik, styring og software indgår i én løsning.
+              Fokus var på kontrolleret fremføring, robust systemopbygning og integration af de centrale delsystemer.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Python</span>
+              <span class="tag">CAD</span>
+              <span class="tag">Sensorer</span>
+              <span class="tag">Kamera</span>
+              <span class="tag">Styring</span>
+              <span class="tag">Systemintegration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gear">
+      <div class="container">
+        <h2>Gearkasse</h2>
+        <div class="feature-section">
+          <div class="feature-text">
+            <h3>Planetgear</h3>
+            <p>
+              Design af planetgear til drivlinjen med fokus på at øge moment og reducere omdrejningstal.
+              Gearkassen blev udviklet i CAD og indgår som en del af robotens mekaniske system.
+            </p>
+          </div>
+
+          <div class="feature-image">
+            <img src="images/gearbox.jpg" alt="Planetgear design til CryoEgg robot">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Elektrisk system</h2>
+        <div class="feature-section reverse">
+          <div class="feature-image">
+            <img src="images/electronics.jpg" alt="Routing af elektriske komponenter i CryoEgg robot">
+          </div>
+
+          <div class="feature-text">
+            <h3>Routing og integration</h3>
+            <p>
+              Opbygning og routing af elektriske komponenter med fokus på integration, kabelføring og samlet systemstruktur.
+              Layoutet blev udviklet med hensyn til plads, adgang og beskyttelse af elektronikken.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="software">
+      <div class="container">
+        <h2>Software og interface</h2>
+        <div class="feature-section">
+          <div class="feature-text">
+            <h3>Brugerinterface</h3>
+            <p>
+              Udvikling af brugerinterface til styring af robotten og visning af systemstatus under drift.
+              Interfacet samler kontrol og feedback i én brugerflade til operatøren.
+            </p>
+          </div>
+
+          <div class="feature-image">
+            <img src="images/interface.jpg" alt="Brugerinterface til CryoEgg robot">
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <footer>
+    <div class="container">
+      <p>© 2026 Morten Raabjerg Nielsen</p>
+    </div>
+  </footer>
 </body>
 </html>
