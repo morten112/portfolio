@@ -71,7 +71,7 @@
     }
 
     .hero {
-      padding: 72px 0 56px;
+      padding: 50px 0 30px;
     }
 
     .hero-grid {
@@ -192,8 +192,8 @@
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
     }
 
     .project-link {
@@ -296,6 +296,12 @@
       font-weight: 400;
     }
 
+    @media (max-width: 800px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 900px) {
       .hero-grid,
       .skills-grid {
@@ -343,9 +349,7 @@
       <nav>
         <h1>Morten Raabjerg Nielsen</h1>
         <ul>
-          <li><a href="#erfaring">Erfaring</a></li>
           <li><a href="#projekter">Projekter</a></li>
-          <li><a href="#kompetencer">Kompetencer</a></li>
           <li><a href="#kontakt">Kontakt</a></li>
         </ul>
       </nav>
@@ -358,14 +362,7 @@
         <div class="hero-text">
           <h2>Morten<br>Raabjerg Nielsen</h2>
           <h3>Diplomingeniør i maskinteknik</h3>
-          <p>
-            Jeg er diplomingeniørstuderende i maskinteknik ved Aarhus Universitet med interesse for R&D, mekatronik,
-            automatisering og produktudvikling. Jeg motiveres af projekter, hvor mekanik, elektronik og software
-            kombineres i funktionelle løsninger. 
-	    Jeg har praktisk erfaring med udvikling og systemintegration gennem projekter og arbejde i R&D og arbejder struktureret og ansvarsbevidst med fokus på fremdrift og koordinering i tekniske projekter.
-          </p>
-          <a class="btn" href="Morten_Raabjerg_Nielsen_CV.pdf" target="_blank">Download CV</a>
-          <a class="btn" href="https://www.linkedin.com/in/morten-raabjerg-nielsen" target="_blank">LinkedIn</a>
+<a class="btn" href="https://www.linkedin.com/in/morten-raabjerg-nielsen" target="_blank">LinkedIn</a>
         </div>
 
         <div class="hero-image">
@@ -373,52 +370,7 @@
         </div>
       </div>
     </section>
-
-    <section id="erfaring">
-      <div class="container">
-        <h2>Erfaring</h2>
-        <div class="box">
-          <div class="experience-list">
-
-            <div class="experience-item">
-              <img class="experience-logo" src="images/sulfilog_logo.jpg" alt="Sulfilogger logo">
-              <div>
-                <h3>Studentermedhjælper – R&D, Sulfilogger</h3>
-                <div class="meta">Aug 2025 – nu</div>
-                <p>
-                  Arbejder i udviklingsafdelingen med prototyper, test og produktionsnære løsninger.
-                </p>
-              </div>
-            </div>
-
-            <div class="experience-item">
-              <img class="experience-logo" src="images/sulfilog_logo.jpg" alt="Sulfilogger logo">
-              <div>
-                <h3>Praktik – R&D, Sulfilogger</h3>
-                <div class="meta">Jan 2025 – Jun 2025</div>
-                <p>
-                  Arbejdede med udvikling af automatiseringsløsninger, CAD, prototypefremstilling og procesforbedringer.
-                </p>
-              </div>
-            </div>
-
-            <div class="experience-item">
-              <img class="experience-logo" src="images/danish_crown_logo.png" alt="Danish Crown logo">
-              <div>
-                <h3>Lagermedarbejder, Danish Crown</h3>
-                <div class="meta">Nov 2019 – Jul 2022 + sommerjob 2023–2025</div>
-                <p>
-                  Arbejde med logistik, truckkørsel, læsning og aflæsning samt håndtering af varer i produktionsmiljø.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projekter">
+<section id="projekter">
       <div class="container">
         <h2>Projekter</h2>
         <div class="projects-grid">
@@ -490,39 +442,7 @@
         </div>
       </div>
     </section>
-
-    <section id="kompetencer">
-      <div class="container">
-        <h2>Kompetencer</h2>
-        <div class="skills-grid">
-          <div class="box skills-box">
-            <h3>Tekniske kompetencer</h3>
-            <ul>
-              <li>SolidWorks / CAD</li>
-              <li>Arbejdstegninger og konstruktion</li>
-              <li>PCB design</li>
-              <li>Python, MATLAB, LabVIEW og Arduino</li>
-              <li>Computer vision og sensorintegration</li>
-              <li>FEM</li>
-            </ul>
-          </div>
-
-          <div class="box skills-box">
-            <h3>Arbejdsform</h3>
-            <ul>
-              <li>Struktureret og ansvarsbevidst</li>
-              <li>Tværfagligt samarbejde</li>
-              <li>Praktisk problemløsning</li>
-              <li>Erfaring med længerevarende projekter</li>
-              <li>Forståelse for komplekse tekniske systemer</li>
-              <li>Systematisk tilgang til opgaver</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="kontakt">
+<section id="kontakt">
       <div class="container">
         <h2>Kontakt</h2>
         <div class="contact-box">
