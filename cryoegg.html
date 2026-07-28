@@ -3,354 +3,751 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Bachelorprojekt: CryoEGG Robot – mekanik, elektronik, software og systemintegration." />
+  <meta name="description" content="Bachelorprojekt: udvikling af en teleopereret robot til transport og kontrolleret deployering af CryoEGG i moulins på Grønland." />
   <title>CryoEGG Robot | Morten Raabjerg Nielsen</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg:#f6f7f8; --card:#fff; --text:#202124; --muted:#667085;
-      --accent:#1f4e79; --soft:#edf4fa; --border:#dfe3e8;
-      --shadow:0 10px 28px rgba(16,24,40,.08); --radius:18px;
+      --bg: #f6f7f8;
+      --card: #ffffff;
+      --text: #202124;
+      --muted: #667085;
+      --accent: #1f4e79;
+      --accent-soft: #edf4fa;
+      --border: #dfe3e8;
+      --shadow: 0 10px 28px rgba(16, 24, 40, 0.08);
+      --radius: 18px;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:'Raleway',sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
-    img{display:block;width:100%}
-    .container{width:min(1120px,92%);margin:0 auto}
-    header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-    nav{min-height:74px;display:flex;justify-content:space-between;align-items:center;gap:24px}
-    .site-title{color:var(--accent);text-decoration:none;font-size:1.15rem;font-weight:700;white-space:nowrap}
-    nav ul{display:flex;gap:18px;flex-wrap:wrap;list-style:none}
-    nav ul a{text-decoration:none;color:var(--text);font-size:.93rem;font-weight:500}
-    nav ul a:hover{color:var(--accent)}
-    .hero{padding:72px 0 38px}
-    .hero-grid,.feature{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
-    .eyebrow{display:inline-flex;margin-bottom:16px;padding:7px 12px;border:1px solid #d5e2ee;border-radius:999px;background:var(--soft);color:var(--accent);font-size:.86rem;font-weight:700}
-    .hero h1{margin-bottom:18px;color:var(--accent);font-size:clamp(2.5rem,5vw,4.3rem);line-height:1.02;letter-spacing:-.035em}
-    .lead{margin-bottom:24px;color:var(--muted);font-size:1.08rem}
-    .button-row{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{display:inline-block;padding:12px 18px;border:1px solid var(--accent);border-radius:10px;text-decoration:none;font-weight:600}
-    .btn-primary{background:var(--accent);color:#fff}
-    .btn-secondary{background:#fff;color:var(--accent)}
-    .hero-image,.image-card,.video-wrap,.card,.fact{overflow:hidden;border:1px solid var(--border);border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow)}
-    .hero-image img{height:430px;object-fit:cover}
-    section{padding:34px 0}
-    .section-head{max-width:760px;margin-bottom:22px}
-    .section-kicker{display:block;margin-bottom:6px;color:var(--accent);font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-    h2{margin-bottom:8px;color:var(--accent);font-size:1.9rem;line-height:1.2}
-    h3{margin-bottom:10px;font-size:1.12rem}
-    p{color:var(--muted)}
-    .video-wrap{padding:16px}
-    .video-frame{position:relative;width:100%;padding-top:56.25%;overflow:hidden;border-radius:12px;background:#111}
-    .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-    .facts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    .fact{padding:19px}
-    .fact .label{display:block;margin-bottom:7px;color:var(--muted);font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
-    .fact .value{font-weight:600}
-    .card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-    .card,.feature-copy{padding:26px}
-    .feature{margin-bottom:28px;align-items:stretch}
-    .feature.reverse .feature-copy{order:2}
-    .feature.reverse .image-card{order:1}
-    .feature-copy{display:flex;flex-direction:column;justify-content:center;border:1px solid var(--border);border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow)}
-    .image-card img{height:100%;min-height:340px;object-fit:cover}
-    .tag-list{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
-    .tag{padding:7px 11px;border:1px solid #d4e1ed;border-radius:999px;background:var(--soft);color:var(--accent);font-size:.84rem;font-weight:600}
-    .bullet-list{margin-top:14px;padding-left:20px;color:var(--muted)}
-    .bullet-list li+li{margin-top:7px}
-    .highlight{padding:30px;border:1px solid #d4e1ed;border-radius:var(--radius);background:linear-gradient(135deg,#eef5fb,#fff);box-shadow:var(--shadow)}
-    .highlight strong{color:var(--accent)}
-    footer{padding:48px 0;text-align:center;color:var(--muted);font-size:.9rem}
-    @media(max-width:960px){
-      .hero-grid,.feature{grid-template-columns:1fr}
-      .hero-image img{height:330px}
-      .feature.reverse .feature-copy,.feature.reverse .image-card{order:initial}
-      .facts-grid{grid-template-columns:repeat(2,1fr)}
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    @media(max-width:700px){
-      nav{align-items:flex-start;flex-direction:column;padding:16px 0}
-      .card-grid,.facts-grid{grid-template-columns:1fr}
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      min-height: 74px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .site-title {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 1.15rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      list-style: none;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.93rem;
+      font-weight: 500;
+    }
+
+    nav ul a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: 72px 0 42px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      margin-bottom: 16px;
+      padding: 7px 12px;
+      border: 1px solid #d5e2ee;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      margin-bottom: 18px;
+      color: var(--accent);
+      font-size: clamp(2.5rem, 5vw, 4.3rem);
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+    }
+
+    .hero .lead {
+      max-width: 700px;
+      margin-bottom: 24px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--accent);
+    }
+
+    .hero-image,
+    .image-card,
+    .video-wrap,
+    .card,
+    .fact {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-image img {
+      min-height: 430px;
+      object-fit: cover;
+      background: #e7eaee;
+    }
+
+    section {
+      padding: 34px 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 22px;
+    }
+
+    .section-kicker {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-size: 1.9rem;
+      line-height: 1.2;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 1.12rem;
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    .video-wrap {
+      padding: 16px;
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #111;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-note {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .fact {
+      padding: 19px;
+    }
+
+    .fact .label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .fact .value {
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      padding: 26px;
+    }
+
+    .feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .feature.reverse .feature-copy {
+      order: 2;
+    }
+
+    .feature.reverse .image-card {
+      order: 1;
+    }
+
+    .feature-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .image-card img {
+      height: 100%;
+      min-height: 340px;
+      object-fit: cover;
+      background: #e7eaee;
+    }
+
+    .tag-list {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 7px 11px;
+      border: 1px solid #d4e1ed;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    .bullet-list {
+      margin-top: 14px;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .bullet-list li + li {
+      margin-top: 7px;
+    }
+
+    .highlight {
+      padding: 28px;
+      border: 1px solid #d4e1ed;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #eef5fb, #ffffff);
+      box-shadow: var(--shadow);
+    }
+
+    .highlight strong {
+      color: var(--accent);
+    }
+
+    footer {
+      padding: 48px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .feature {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image img {
+        min-height: 320px;
+      }
+
+      .feature.reverse .feature-copy,
+      .feature.reverse .image-card {
+        order: initial;
+      }
+
+      .facts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      nav ul {
+        gap: 12px;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .card-grid,
+      .facts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .image-card img {
+        min-height: 250px;
+      }
     }
   </style>
 </head>
+
 <body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="site-title" href="index.html">Morten Raabjerg Nielsen</a>
 
-<header>
-  <div class="container">
-    <nav>
-      <a class="site-title" href="index.html">Morten Raabjerg Nielsen</a>
-      <ul>
-        <li><a href="index.html">Forside</a></li>
-        <li><a href="#video">Video</a></li>
-        <li><a href="#projekt">Projekt</a></li>
-        <li><a href="#mekanik">Mekanik</a></li>
-        <li><a href="#test">Test</a></li>
-        <li><a href="#styring">Styring</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<main>
-
-<section class="hero">
-  <div class="container hero-grid">
-    <div>
-      <span class="eyebrow">Bachelorprojekt · Aarhus Universitet · 2026</span>
-      <h1>CryoEGG Robot</h1>
-      <p class="lead">
-        Udvikling af en teleopereret robot til transport og kontrolleret deployering af CryoEGG i moulins på den grønlandske indlandsis.
-        Projektet kombinerede mekanisk konstruktion, elektronik, software og systemintegration i en funktionel prototype.
-      </p>
-      <div class="button-row">
-        <a class="btn btn-primary" href="#video">Se projektvideo</a>
-        <a class="btn btn-secondary" href="#projekt">Læs om projektet</a>
-      </div>
+        <ul>
+          <li><a href="index.html">Forside</a></li>
+          <li><a href="#video">Video</a></li>
+          <li><a href="#projekt">Projekt</a></li>
+          <li><a href="#mekanik">Mekanik</a></li>
+          <li><a href="#styring">Styring</a></li>
+          <li><a href="#test">Test</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="hero-image">
-      <img src="images/Front.jpg" alt="CryoEGG robot set forfra">
-    </div>
-  </div>
-</section>
+  </header>
 
-<section id="video">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-kicker">Projektvideo</span>
-      <h2>Fra problem til prototype</h2>
-      <p>Videoen viser projektets baggrund, udviklingsproces og den færdige robot.</p>
-    </div>
-    <div class="video-wrap">
-      <div class="video-frame">
-        <iframe
-          src="https://www.youtube.com/embed/XEsht2QuMxY"
-          title="CryoEGG Robot bachelorprojekt"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
-    </div>
-  </div>
-</section>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Bachelorprojekt · Aarhus Universitet · 2026</span>
+          <h1>CryoEGG Robot</h1>
 
-<section>
-  <div class="container">
-    <div class="facts-grid">
-      <div class="fact"><span class="label">Projekt</span><span class="value">Bachelorprojekt</span></div>
-      <div class="fact"><span class="label">Prototype</span><span class="value">12,5 kg robot</span></div>
-      <div class="fact"><span class="label">Styring</span><span class="value">BlueOS · ArduPilot · Arduino</span></div>
-      <div class="fact"><span class="label">Fokus</span><span class="value">Mekanik · elektronik · software</span></div>
-    </div>
-  </div>
-</section>
+          <p class="lead">
+            Udvikling af en teleopereret robot til transport og kontrolleret deployering af
+            CryoEGG i moulins på den grønlandske indlandsis. Projektet kombinerede mekanisk
+            konstruktion, elektronik, software og systemintegration i en funktionel prototype.
+          </p>
 
-<section id="projekt">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-kicker">Baggrund</span>
-      <h2>Projektet</h2>
-      <p>
-        CryoEGG er en sensor til måling af blandt andet tryk, temperatur og elektrisk ledningsevne under isen.
-        For at få sensoren ned til det subglaciale miljø skal den føres gennem moulins – naturlige smeltevandshuller i indlandsisen.
-      </p>
-    </div>
+          <div class="button-row">
+            <a class="btn btn-primary" href="#video">Se projektvideo</a>
+            <a class="btn btn-secondary" href="#projekt">Læs om projektet</a>
+          </div>
+        </div>
 
-    <div class="feature">
-      <div class="feature-copy">
-        <h3>En robot til et utilgængeligt miljø</h3>
-        <p>
-          Målet var at udvikle en robot, der kunne transportere CryoEGG frem til et moulin,
-          positioneres af operatøren og frigive sensoren kontrolleret.
-          Samtidig skulle robotten fungere på ujævne overflader med is, sne og vand og give operatøren visuel feedback.
-        </p>
-        <div class="tag-list">
-          <span class="tag">SolidWorks</span>
-          <span class="tag">3D-print</span>
-          <span class="tag">Raspberry Pi</span>
-          <span class="tag">Arduino</span>
-          <span class="tag">Python</span>
-          <span class="tag">BlueOS</span>
-          <span class="tag">ArduPilot</span>
+        <div class="hero-image">
+          <img src="images/Front.jpg" alt="CryoEGG robot prototype">
         </div>
       </div>
-      <div class="image-card">
-        <img src="images/Robot.jpg" alt="CryoEGG robot prototype">
+    </section>
+
+    <section id="video">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Projektvideo</span>
+          <h2>CryoEGG Robot i praksis</h2>
+          <p>
+            Videoen giver et samlet overblik over problemstillingen, udviklingsprocessen,
+            robotten og den færdige prototype.
+          </p>
+        </div>
+
+        <div class="video-wrap">
+          <div class="video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/XEsht2QuMxY"
+              title="CryoEGG Robot bachelorprojekt"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="facts-grid">
+          <div class="fact">
+            <span class="label">Projekt</span>
+            <span class="value">Bachelorprojekt</span>
+          </div>
+
+          <div class="fact">
+            <span class="label">Robot</span>
+            <span class="value">12,5 kg teleopereret prototype</span>
+          </div>
+
+          <div class="fact">
+            <span class="label">Platform</span>
+            <span class="value">Raspberry Pi · BlueOS · ArduPilot</span>
+          </div>
+
+          <div class="fact">
+            <span class="label">Fokus</span>
+            <span class="value">Mekanik · elektronik · software</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projekt">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Baggrund</span>
+          <h2>Projektet</h2>
+          <p>
+            CryoEGG er en sfærisk sensor, der bruges til måling af blandt andet tryk,
+            temperatur og elektrisk ledningsevne i subglaciale miljøer. En central udfordring
+            er at få sensoren sikkert ned gennem moulins, hvor adgangsforholdene kan være
+            vanskelige og risikable for feltarbejdere.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h3>Opgaven</h3>
+            <p>
+              Målet var at udvikle en robot, der kunne transportere CryoEGG frem til et moulin,
+              positioneres af en operatør og frigive sensoren kontrolleret. Robotten skulle
+              samtidig kunne fjernstyres og give operatøren visuel feedback under drift.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Min rolle</h3>
+            <p>
+              Jeg arbejdede med hele udviklingsforløbet fra koncept og CAD til mekanisk design,
+              elektronik, programmering, systemintegration og test. Projektet krævede, at de
+              enkelte delsystemer blev udviklet med fokus på den samlede funktion.
+            </p>
+
+            <div class="tag-list">
+              <span class="tag">SolidWorks</span>
+              <span class="tag">3D-print</span>
+              <span class="tag">Arduino</span>
+              <span class="tag">Raspberry Pi</span>
+              <span class="tag">BlueOS</span>
+              <span class="tag">ArduPilot</span>
+              <span class="tag">Python</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mekanik">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Mekanisk udvikling</span>
+          <h2>Konstruktion og fremdrift</h2>
+        </div>
+
+        <div class="feature">
+          <div class="feature-copy">
+            <h3>Robotplatform og stjernehjul</h3>
+            <p>
+              Robotten blev udviklet til at kunne bevæge sig på ujævne overflader med is,
+              sne og smeltevand. Fire individuelt drevne stjernehjul gav robotten en stor
+              kontaktflade og mulighed for at passere ujævnheder.
+            </p>
+
+            <ul class="bullet-list">
+              <li>Fire BLDC-motorer med individuel styring</li>
+              <li>Stjernehjul med ispigge</li>
+              <li>Fleksible 3D-printede hjulkomponenter i TPU</li>
+              <li>Designet til kørsel i begge retninger</li>
+            </ul>
+          </div>
+
+          <div class="image-card">
+            <img src="images/Robot.jpg" alt="CAD-model af CryoEGG robotten">
+          </div>
+        </div>
+
+        <div class="feature reverse">
+          <div class="feature-copy">
+            <h3>Planetgear</h3>
+            <p>
+              Drivlinjen blev udviklet med en kompakt to-trins planetgearkasse for at reducere
+              omdrejningstal og øge momentet ved hjulene. Gearkassen blev designet i CAD og
+              fremstillet som en integreret del af den mekaniske prototype.
+            </p>
+
+            <ul class="bullet-list">
+              <li>2-trins planetgear</li>
+              <li>Solhjul: 8 tænder</li>
+              <li>Ringhjul: 34 tænder</li>
+              <li>Planethjul: 13 tænder</li>
+            </ul>
+          </div>
+
+          <div class="image-card">
+            <img src="images/Gear.jpg" alt="Planetgear til CryoEGG robotten">
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="feature-copy">
+            <h3>Prototypeudvikling</h3>
+            <p>
+              Robotten blev udviklet gennem en iterativ proces, hvor mekaniske løsninger
+              blev designet, fremstillet og testet løbende. Konstruktionen blev justeret
+              på baggrund af erfaringer fra de fysiske prototyper og samspillet mellem
+              robotens forskellige delsystemer.
+            </p>
+
+            <ul class="bullet-list">
+              <li>Udvikling fra koncept til fysisk prototype</li>
+              <li>Fremstilling og tilpasning af 3D-printede komponenter</li>
+              <li>Test af bevægelse, stabilitet og funktion</li>
+              <li>Løbende integration af mekanik, elektronik og software</li>
+            </ul>
+          </div>
+
+          <div class="image-card">
+            <img src="images/Prototype.jpg" alt="Prototypeudvikling af CryoEGG robotten">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="styring">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Elektronik og software</span>
+          <h2>Styring og systemintegration</h2>
+          <p>
+            Robotten blev bygget omkring en Raspberry Pi 4 med BlueOS og en Navigator flight
+            controller. ArduPilot/ArduRover håndterede den overordnede platform, mens en Arduino
+            stod for flere af de lokale funktioner.
+          </p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-copy">
+            <h3>Hardwarearkitektur</h3>
+            <p>
+              Systemet samler fremdrift, kameraer, lys, sensorer og hjælpefunktioner i én platform.
+              Fokus var på at holde styringen modulær, så de enkelte funktioner kunne testes
+              og fejlsøges separat.
+            </p>
+
+            <ul class="bullet-list">
+              <li>Raspberry Pi 4 med BlueOS</li>
+              <li>Navigator Flight Controller</li>
+              <li>4 × BLDC-motorer med ESC</li>
+              <li>Arduino Nano til lys, stepmotor og batterimåling</li>
+              <li>To USB-kameraer til front- og bagudsyn</li>
+            </ul>
+          </div>
+
+          <div class="image-card">
+            <img src="images/hardware.jpg" alt="Elektronik og hardware routing i robotten">
+          </div>
+        </div>
+
+        <div class="feature reverse">
+          <div class="feature-copy">
+            <h3>Brugerinterface</h3>
+            <p>
+              Operatøren styrer robotten gennem Cockpit med Xbox-controller. Interfacet samler
+              videostream, kompas, kunstig horisont, batteristatus og lysstyrke i én brugerflade.
+            </p>
+
+            <ul class="bullet-list">
+              <li>Livevideo fra front- og bagkamera</li>
+              <li>Joystick-baseret kørsel</li>
+              <li>Kontrol af floodlights</li>
+              <li>Visning af batteri- og systemstatus</li>
+            </ul>
+          </div>
+
+          <div class="image-card">
+            <img src="images/interface.jpg" alt="Cockpit brugerinterface til CryoEGG robotten">
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h3>Kommunikation</h3>
+            <p>
+              En Python-baseret HTTP-bridge på Raspberry Pi'en håndterede kommunikationen mellem
+              brugerinterfacet og Arduinoen. Det gjorde det muligt at styre funktioner som lys,
+              stepmotor og aflæse batteristatus gennem simple endpoints.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Autonom platform</h3>
+            <p>
+              BlueOS og ArduPilot gav adgang til blandt andet IMU, kompas, lækagesensor,
+              køretøjsstatus og styring af fremdriften. Systemet blev konfigureret, så robotten
+              kunne starte op som en selvstændig platform uden manuel opsætning af Pi'en.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="test">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Validering</span>
+          <h2>Test og dimensionering</h2>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <h3>Mekanisk dimensionering</h3>
+            <p>
+              Konstruktionen blev vurderet gennem blandt andet belastningscases for hjul og
+              lejer, stabilitetsberegninger samt vurdering af robotens tyngdepunkt og risiko
+              for tipning.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Materialetest</h3>
+            <p>
+              3D-printmaterialer blev testet ved lave temperaturer med Charpy-slagprøvning.
+              Formålet var at sammenligne PLA, PETG og forskellige TPU-materialer og undersøge,
+              hvordan deres slagsejhed ændrede sig ved temperaturer under frysepunktet.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="highlight">
+          <h2>Resultat</h2>
+          <p>
+            Projektet resulterede i en fungerende prototype, hvor <strong>mekanisk konstruktion,
+            elektronik, software og brugerinterface</strong> blev samlet i ét system. For mig var
+            projektet især værdifuldt, fordi jeg arbejdede hele vejen fra koncept og CAD til
+            fremstilling, programmering, integration og fysisk test af den færdige robot.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Morten Raabjerg Nielsen</p>
     </div>
-  </div>
-</section>
-
-<section id="mekanik">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-kicker">Mekanisk udvikling</span>
-      <h2>Konstruktion og fremdrift</h2>
-      <p>Robotten blev konstrueret med fokus på mobilitet, robusthed og kompakt integration af drivlinjen.</p>
-    </div>
-
-    <div class="feature">
-      <div class="feature-copy">
-        <h3>Stjernehjul og drivlinje</h3>
-        <p>
-          Fire individuelt drevne stjernehjul blev udviklet til bevægelse på ujævne overflader.
-          Hjulene kombinerer stive og fleksible 3D-printede dele og er udstyret med ispigge for bedre greb.
-        </p>
-        <ul class="bullet-list">
-          <li>4 individuelt drevne BLDC-motorer</li>
-          <li>Stjernehjul med ispigge</li>
-          <li>TPU-komponenter med forskellige hårdheder</li>
-          <li>Kørsel i begge retninger</li>
-        </ul>
-      </div>
-      <div class="image-card">
-        <img src="images/Gear.jpg" alt="Gear og drivlinje på CryoEGG robotten">
-      </div>
-    </div>
-
-    <div class="card-grid">
-      <div class="card">
-        <h3>2-trins planetgear</h3>
-        <p>
-          En kompakt planetgearkasse reducerer motorens omdrejningstal og øger momentet ved hjulene.
-          Gearkassen blev designet i CAD og fremstillet ved 3D-print.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Geargeometri</h3>
-        <p>
-          Geartrinnet blev opbygget med 8-tands solhjul, 13-tands planethjul og 34-tands ringhjul
-          og integreret direkte i robotens mekaniske arkitektur.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="test">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-kicker">Udvikling og validering</span>
-      <h2>Fra CAD til fysisk prototype</h2>
-    </div>
-
-    <div class="feature reverse">
-      <div class="feature-copy">
-        <h3>Iterativ udvikling og test</h3>
-        <p>
-          Projektet blev udviklet gennem gentagne iterationer, hvor mekaniske løsninger blev designet,
-          fremstillet og testet fysisk. Konstruktionen blev løbende justeret på baggrund af test af
-          bevægelse, materialer, stabilitet og samspillet mellem delsystemerne.
-        </p>
-        <ul class="bullet-list">
-          <li>Prototypeudvikling og funktionstest</li>
-          <li>Stabilitets- og belastningsvurderinger</li>
-          <li>Charpy-test af 3D-printmaterialer ved lave temperaturer</li>
-          <li>Integrationstest af mekanik, elektronik og software</li>
-        </ul>
-      </div>
-      <div class="image-card">
-        <img src="images/Test.jpg" alt="Udvikling og test af CryoEGG robotten">
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="styring">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-kicker">Elektronik og software</span>
-      <h2>Styring og systemintegration</h2>
-      <p>
-        Robotten blev bygget omkring en Raspberry Pi 4 med BlueOS og en Navigator Flight Controller.
-        ArduPilot håndterede køretøjsstyringen, mens en Arduino stod for flere af robotens lokale funktioner.
-      </p>
-    </div>
-
-    <div class="feature">
-      <div class="feature-copy">
-        <h3>Hardwarearkitektur</h3>
-        <p>
-          Elektronik, motorstyring, kameraer og sensorer blev samlet i én platform.
-          Systemet blev opbygget modulært, så funktionerne kunne testes og fejlsøges individuelt.
-        </p>
-        <ul class="bullet-list">
-          <li>Raspberry Pi 4 med BlueOS</li>
-          <li>Navigator Flight Controller</li>
-          <li>4 × BLDC-motorer med ESC</li>
-          <li>Arduino Nano</li>
-          <li>To USB-kameraer</li>
-          <li>IMU, kompas, tryk- og lækagesensor</li>
-        </ul>
-      </div>
-      <div class="image-card">
-        <img src="images/hardware.jpg" alt="Elektronik og hardware i CryoEGG robotten">
-      </div>
-    </div>
-
-    <div class="feature reverse">
-      <div class="feature-copy">
-        <h3>Brugerinterface og fjernstyring</h3>
-        <p>
-          Robotten styres gennem Cockpit med en Xbox-controller. Interfacet samler livevideo,
-          køretøjsdata og kontrol af robotens funktioner i én brugerflade.
-        </p>
-        <ul class="bullet-list">
-          <li>Livevideo fra front- og bagkamera</li>
-          <li>Joystick-baseret styring</li>
-          <li>Kompas og kunstig horisont</li>
-          <li>Kontrol af floodlights</li>
-          <li>Batteri- og systemstatus</li>
-          <li>Kontrol af CryoEGG-frigivelse</li>
-        </ul>
-      </div>
-      <div class="image-card">
-        <img src="images/interface.jpg" alt="Cockpit interface til CryoEGG robotten">
-      </div>
-    </div>
-
-    <div class="card-grid">
-      <div class="card">
-        <h3>Softwareintegration</h3>
-        <p>
-          En Python-baseret HTTP-bridge på Raspberry Pi'en håndterede kommunikationen mellem Cockpit og Arduinoen.
-          Dermed kunne lys, batterimåling og stepmotor betjenes direkte fra interfacet.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Samlet system</h3>
-        <p>
-          En central del af projektet var at få mekanik, elektronik og software til at fungere som ét system –
-          fra komponentvalg og kabelføring til kommunikation, styring og fysisk integration.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="highlight">
-      <h2>Resultat</h2>
-      <p>
-        Projektet resulterede i en fungerende prototype, hvor <strong>mekanisk konstruktion,
-        elektronik, software og brugerinterface</strong> blev samlet i ét system.
-        Projektet gav praktisk erfaring med hele udviklingsforløbet fra koncept og CAD til fremstilling,
-        programmering, integration og fysisk test.
-      </p>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="container">
-    <p>© 2026 Morten Raabjerg Nielsen</p>
-  </div>
-</footer>
-
+  </footer>
 </body>
 </html>
