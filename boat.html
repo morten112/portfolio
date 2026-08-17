@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bådprojekt | Morten Raabjerg Nielsen</title>
+  <meta name="description" content="Totalrenovering af en stålbåd med motorarbejde, konstruktion, elinstallationer og PLC/SCADA-styring.">
+  <title>Totalrenovering af stålbåd | Morten Raabjerg Nielsen</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,12 +12,15 @@
 
   <style>
     :root {
-      --bg: #f7f7f7;
+      --bg: #f6f7f8;
       --card: #ffffff;
-      --text: #1f1f1f;
-      --muted: #666;
+      --text: #202124;
+      --muted: #667085;
       --accent: #1f4e79;
-      --border: #dddddd;
+      --accent-soft: #edf4fa;
+      --border: #dfe3e8;
+      --shadow: 0 10px 28px rgba(16, 24, 40, 0.08);
+      --radius: 18px;
     }
 
     * {
@@ -30,448 +34,663 @@
     }
 
     body {
-      font-family: 'Raleway', sans-serif;
-      background: #efefef;
-      color: #111;
-      margin: 0;
-      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Raleway", sans-serif;
+      line-height: 1.65;
     }
 
-    header {
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
-      padding: 24px 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
     }
 
     .container {
-      width: min(1100px, 92%);
+      width: min(1120px, 92%);
       margin: 0 auto;
     }
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
     }
 
-    nav h1 {
-      font-size: 1.3rem;
-      color: var(--accent);
-      font-weight: 600;
-      margin: 0;
+    nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
     }
 
     .site-title {
-      color: inherit;
+      color: var(--accent);
+      font-size: 1.15rem;
+      font-weight: 700;
       text-decoration: none;
+      white-space: nowrap;
     }
 
     nav ul {
-      list-style: none;
       display: flex;
-      gap: 18px;
       flex-wrap: wrap;
-      margin: 0;
-      padding: 0;
+      gap: 18px;
+      list-style: none;
     }
 
-    nav a {
-      text-decoration: none;
+    nav ul a {
       color: var(--text);
+      font-size: 0.93rem;
       font-weight: 500;
+      text-decoration: none;
     }
 
-    .page-content {
-      width: min(1100px, 92%);
-      margin: auto;
-      padding: 40px 0 60px;
-    }
-
-    h1.page-title {
-      font-size: 2.4rem;
-      font-weight: 700;
-      margin-bottom: 30px;
+    nav ul a:hover,
+    nav ul a:focus-visible {
       color: var(--accent);
     }
 
-    h2 {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-      color: var(--text);
-      font-weight: 600;
+    section {
+      padding: 34px 0;
     }
 
-    p {
-      font-size: 1rem;
-      margin-bottom: 12px;
-      max-width: 900px;
+    .hero {
+      padding: 72px 0 44px;
     }
 
-    .hero img {
-      width: 100%;
-      max-width: 1100px;
-      display: block;
-      margin: 0 auto 50px;
-      border-radius: 12px;
-    }
-
-    .project-description {
-      margin-bottom: 70px;
-      max-width: 1050px;
-    }
-
-    .feature {
+    .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 40px;
+      grid-template-columns: 1.08fr 0.92fr;
       align-items: center;
-      margin-bottom: 80px;
+      gap: 40px;
     }
 
-    .feature.reverse {
-      grid-template-columns: 1.2fr 1fr;
+    .kicker {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    .feature-text {
-      padding: 10px;
+    .hero h1 {
+      margin-bottom: 18px;
+      color: var(--accent);
+      font-size: clamp(2.7rem, 5vw, 4.3rem);
+      letter-spacing: -0.04em;
+      line-height: 1.02;
     }
 
-    .feature-text h2 {
-      font-size: 2rem;
-      margin-bottom: 12px;
-      color: var(--text);
-      font-weight: 600;
+    .lead {
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 1.07rem;
     }
 
-    .feature-text p {
-      font-size: 1.05rem;
-      max-width: 500px;
+    .hero-image,
+    .feature-card,
+    .story-card,
+    .gallery-card {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
     }
 
-    .feature-images {
+    .hero-image img {
+      min-height: 430px;
+      object-fit: cover;
+      background: #e7eaee;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-size: 1.9rem;
+      line-height: 1.2;
+    }
+
+    .section-head p,
+    .story-card p,
+    .feature-copy p {
+      color: var(--muted);
+    }
+
+    .story-card {
+      padding: 30px;
+    }
+
+    .story-card h3,
+    .feature-copy h3 {
+      margin-bottom: 10px;
+      font-size: 1.18rem;
+    }
+
+    .story-card p + p,
+    .feature-copy p + p {
+      margin-top: 12px;
+    }
+
+    .feature-card {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 15px;
+      margin-bottom: 28px;
     }
 
-    .feature-images img,
-    .single-image img {
-      width: 100%;
-      height: 340px;
-      display: block;
+    .feature-card.reverse .feature-copy {
+      order: 2;
+    }
+
+    .feature-card.reverse .feature-media {
+      order: 1;
+    }
+
+    .feature-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .feature-media img {
+      height: 100%;
+      min-height: 350px;
       object-fit: cover;
-      border-radius: 8px;
+      background: #e7eaee;
     }
 
-    .single-image img {
-      max-height: 500px;
+    .media-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 12px;
+      background: var(--accent-soft);
     }
 
-    .skills-section p {
-      margin-bottom: 10px;
+    .media-pair img {
+      min-height: 340px;
+      border-radius: 10px;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 12px 18px;
-      background: var(--accent);
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      margin-top: 20px;
-      font-weight: 600;
+    .image-slot {
+      position: relative;
+      min-height: 340px;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #dfe8f0;
+    }
+
+    .image-slot img {
+      position: absolute;
+      inset: 0;
+      min-height: 100%;
+    }
+
+    .image-placeholder {
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 7px;
+      padding: 24px;
+      border: 2px dashed #9fb4c7;
+      border-radius: 10px;
+      color: var(--accent);
+      text-align: center;
+    }
+
+    .image-placeholder small {
+      color: var(--muted);
+    }
+
+    .gallery-card {
+      padding: 18px;
     }
 
     .thumbnail-gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
       gap: 12px;
-      margin-top: 20px;
     }
 
-    .thumbnail-gallery img {
-      width: 100%;
-      height: 110px;
-      object-fit: cover;
+    .thumbnail-button {
+      overflow: hidden;
+      padding: 0;
+      border: 0;
+      border-radius: 10px;
+      background: #e7eaee;
       cursor: pointer;
-      border-radius: 6px;
+    }
+
+    .thumbnail-button img {
+      height: 125px;
+      object-fit: cover;
       transition: transform 0.2s ease;
     }
 
-    .thumbnail-gallery img:hover {
-      transform: scale(1.03);
+    .thumbnail-button:hover img,
+    .thumbnail-button:focus-visible img {
+      transform: scale(1.04);
     }
 
     .lightbox {
-      display: none;
       position: fixed;
-      z-index: 9999;
       inset: 0;
-      background: rgba(0, 0, 0, 0.92);
-      justify-content: center;
+      z-index: 9999;
+      display: none;
       align-items: center;
-      padding: 20px;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.92);
+    }
+
+    .lightbox[aria-hidden="false"] {
+      display: flex;
     }
 
     .lightbox-content {
-      max-width: 85%;
-      max-height: 80%;
-      border-radius: 4px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      max-width: 86%;
+      max-height: 82vh;
+      border-radius: 6px;
+      box-shadow: 0 0 24px rgba(0, 0, 0, 0.55);
+      object-fit: contain;
     }
 
-    .close,
-    .prev,
-    .next {
+    .lightbox-control {
       position: absolute;
-      color: white;
-      font-size: 2rem;
+      border: 0;
+      background: transparent;
+      color: #ffffff;
       cursor: pointer;
-      user-select: none;
-      font-weight: bold;
-      z-index: 10000;
+      font-size: 2.3rem;
+      font-weight: 700;
+      line-height: 1;
     }
 
-    .close {
-      top: 20px;
-      right: 35px;
-      font-size: 2.5rem;
+    .lightbox-close {
+      top: 22px;
+      right: 32px;
+      font-size: 2.6rem;
     }
 
-    .prev {
-      left: 30px;
+    .lightbox-prev {
       top: 50%;
+      left: 28px;
       transform: translateY(-50%);
     }
 
-    .next {
-      right: 30px;
+    .lightbox-next {
       top: 50%;
+      right: 28px;
       transform: translateY(-50%);
     }
 
-    @media (max-width: 900px) {
-      .feature,
-      .feature.reverse {
+    footer {
+      margin-top: 32px;
+      padding: 34px 0 44px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .feature-card {
         grid-template-columns: 1fr;
       }
 
-      .feature-images {
+      .hero-image img {
+        min-height: 320px;
+      }
+
+      .feature-card.reverse .feature-copy,
+      .feature-card.reverse .feature-media {
+        order: initial;
+      }
+    }
+
+    @media (max-width: 700px) {
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      nav ul {
+        gap: 12px;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .media-pair {
         grid-template-columns: 1fr;
       }
 
-      h1.page-title {
-        font-size: 2rem;
+      .feature-media img,
+      .media-pair img,
+      .image-slot,
+      .image-placeholder {
+        min-height: 260px;
       }
 
-      .feature-text h2 {
-        font-size: 1.6rem;
+      .lightbox-content {
+        max-width: 100%;
+      }
+
+      .lightbox-prev {
+        left: 10px;
+      }
+
+      .lightbox-next {
+        right: 10px;
       }
     }
   </style>
 </head>
-<body>
 
+<body>
   <header>
     <div class="container">
-      <nav>
-        <h1><a class="site-title" href="index.html">Morten Raabjerg Nielsen</a></h1>
+      <nav aria-label="Primær navigation">
+        <a class="site-title" href="index.html">Morten Raabjerg Nielsen</a>
         <ul>
           <li><a href="index.html">Forside</a></li>
           <li><a href="#projekt">Projekt</a></li>
+          <li><a href="#motorer">Motorer</a></li>
+          <li><a href="#el">El-system</a></li>
+          <li><a href="#plc">PLC/SCADA</a></li>
           <li><a href="#galleri">Galleri</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <div class="page-content">
-
-    <h1 class="page-title">Totalrenovering af Stål båd</h1>
-
+  <main>
     <section class="hero">
-      <img src="images/boat_2.jpg" alt="Færdig båd">
-    </section>
+      <div class="container hero-grid">
+        <div>
+          <span class="kicker">Praktisk projekt · Totalrenovering</span>
+          <h1>Totalrenovering af stålbåd</h1>
+          <p class="lead">
+            Et flerårigt fritidsprojekt, hvor en ældre stålbåd blev adskilt ned til skrog og
+            motorer og derefter bygget op igen med renoverede motorer, ny konstruktion,
+            elinstallationer og en samlet teknisk styring.
+          </p>
+        </div>
 
-    <section class="project-description">
-      <h2 id="projekt">Projekt</h2>
-      <p>
-        Projektet bestod i en totalrenovering af en ældre stålbåd, hvor alt blev fjernet ned til skroget og motorerne.
-        Herefter blev båden genopbygget fra bunden med nye systemer, installationer og interiør.
-      </p>
-      <p>
-        Projektet blev udført i fritiden og finansieret gennem arbejde ved siden af. Målet var at renovere båden
-        og gøre den moderne, både teknisk og visuelt.
-      </p>
-    </section>
-
-    <section class="feature">
-      <div class="feature-text">
-        <h2>Motorer</h2>
-        <p>
-          Renovering af 2x Perkins 6.354 motorer, udskiftning af dyser, filtre, generator og forbedring af kølesystem.
-          Arbejdet bestod primært i at demontere de ydre komponenter, rengøre eller udskifte dem efter behov og bygge
-          systemet op igen.
-        </p>
-      </div>
-
-      <div class="feature-images">
-        <img src="images/engine_after.jpg" alt="Motor efter renovering">
-        <img src="images/engine_before.jpg" alt="Motor før renovering">
+        <div class="hero-image">
+          <img src="images/boat_2.jpg" alt="Den færdigrenoverede stålbåd">
+        </div>
       </div>
     </section>
 
-    <section class="feature reverse">
-      <div class="feature-images">
-        <img src="images/interior_after.jpg" alt="Interiør efter renovering">
-        <img src="images/interior_before.jpg" alt="Interiør før renovering">
-      </div>
+    <section id="projekt">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Projektet</span>
+          <h2>Genopbygget fra bunden</h2>
+        </div>
 
-      <div class="feature-text">
-        <h2>Konstruktion</h2>
-        <p>
-          Svejsning (MAG), udskiftning af rust, opbygning af interiør, speciallavede døre, vinduesrammer og møbler.
-          Hele båden blev bygget op igen fra bunden, og alt fra vægge til motorrum og opholdsrum blev fornyet.
-        </p>
-      </div>
-    </section>
-
-    <section class="feature">
-      <div class="feature-text">
-        <h2>El-system</h2>
-        <p>
-          Installation af 12V og 24V systemer, kabeltrækning, dimensionering og opbygning af el-diagrammer.
-          Vi arbejdede med batteripakker, inverter, sikringer og kabelføring. 230V installationen blev lavet med hjælp
-          fra autoriseret fagperson.
-        </p>
-      </div>
-
-      <div class="single-image">
-        <img src="images/boat_after.jpg" alt="Færdig båd og systemer">
+        <article class="story-card">
+          <h3>En komplet teknisk og visuel renovering</h3>
+          <p>
+            Alt eksisterende interiør og en stor del af installationerne blev fjernet, så bådens
+            tilstand kunne vurderes, rust udbedres og de tekniske systemer bygges op på ny.
+            Arbejdet omfattede både mekanik, svejsning, el, indretning og løbende problemløsning.
+          </p>
+          <p>
+            Projektet blev udført i fritiden og finansieret gennem arbejde ved siden af.
+            Målet var at skabe en båd, som både teknisk og visuelt var moderniseret, og hvor
+            de enkelte installationer fungerede som dele af ét samlet system.
+          </p>
+        </article>
       </div>
     </section>
 
-    <section class="project-description skills-section">
-      <h2>Kompetencer fra projektet</h2>
-      <p>Stærk hands-on erfaring med mekaniske systemer</p>
-      <p>Forståelse for komplette tekniske systemer</p>
-      <p>Problemløsning i praksis</p>
-      <p>Arbejde med elinstallation og systemintegration</p>
-      <p>Langsigtet projektarbejde og planlægning</p>
+    <section id="motorer">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Mekanik</span>
+          <h2>Motorer og drivlinje</h2>
+        </div>
+
+        <article class="feature-card">
+          <div class="feature-copy">
+            <h3>Renovering af to Perkins 6.354-motorer</h3>
+            <p>
+              Motorerne blev gennemgået med udskiftning af blandt andet dyser, filtre og generator
+              samt forbedringer af kølesystemet. Ydre komponenter blev demonteret, rengjort eller
+              udskiftet efter behov, før motorerne og deres hjælpesystemer blev bygget op igen.
+            </p>
+          </div>
+          <div class="feature-media media-pair">
+            <img src="images/engine_after.jpg" alt="Motor efter renovering">
+            <img src="images/engine_before.jpg" alt="Motor før renovering">
+          </div>
+        </article>
+      </div>
     </section>
 
-    <section class="project-description">
-      <h2 id="galleri">Galleri</h2>
+    <section id="konstruktion">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Konstruktion</span>
+          <h2>Stål, interiør og specialløsninger</h2>
+        </div>
 
-      <div class="thumbnail-gallery">
-        <img src="images/img_001.jpg" alt="Galleri billede 1" onclick="openLightbox(0)">
-        <img src="images/img_002.jpg" alt="Galleri billede 2" onclick="openLightbox(1)">
-        <img src="images/img_003.jpg" alt="Galleri billede 3" onclick="openLightbox(2)">
-        <img src="images/img_004.jpg" alt="Galleri billede 4" onclick="openLightbox(3)">
-        <img src="images/img_005.jpg" alt="Galleri billede 5" onclick="openLightbox(4)">
-        <img src="images/img_006.jpg" alt="Galleri billede 6" onclick="openLightbox(5)">
-        <img src="images/img_007.jpg" alt="Galleri billede 7" onclick="openLightbox(6)">
-        <img src="images/img_008.jpg" alt="Galleri billede 8" onclick="openLightbox(7)">
-        <img src="images/img_009.jpg" alt="Galleri billede 9" onclick="openLightbox(8)">
-        <img src="images/img_010.jpg" alt="Galleri billede 10" onclick="openLightbox(9)">
-        <img src="images/img_011.jpg" alt="Galleri billede 11" onclick="openLightbox(10)">
-        <img src="images/img_012.jpg" alt="Galleri billede 12" onclick="openLightbox(11)">
-        <img src="images/img_013.jpg" alt="Galleri billede 13" onclick="openLightbox(12)">
-        <img src="images/img_014.jpg" alt="Galleri billede 14" onclick="openLightbox(13)">
-        <img src="images/img_015.jpg" alt="Galleri billede 15" onclick="openLightbox(14)">
-        <img src="images/img_016.jpg" alt="Galleri billede 16" onclick="openLightbox(15)">
-        <img src="images/img_017.jpg" alt="Galleri billede 17" onclick="openLightbox(16)">
-        <img src="images/img_018.jpg" alt="Galleri billede 18" onclick="openLightbox(17)">
-        <img src="images/img_019.jpg" alt="Galleri billede 19" onclick="openLightbox(18)">
-        <img src="images/img_020.jpg" alt="Galleri billede 20" onclick="openLightbox(19)">
-        <img src="images/img_021.jpg" alt="Galleri billede 21" onclick="openLightbox(20)">
+        <article class="feature-card reverse">
+          <div class="feature-copy">
+            <h3>Genopbygning af skrog og indretning</h3>
+            <p>
+              Arbejdet omfattede MAG-svejsning, udskiftning af rustangrebne områder og opbygning
+              af nyt interiør. Døre, vinduesrammer og møbler blev tilpasset bådens geometri,
+              og både opholdsrum og motorrum blev fornyet fra bunden.
+            </p>
+          </div>
+          <div class="feature-media media-pair">
+            <img src="images/interior_after.jpg" alt="Interiør efter renovering">
+            <img src="images/interior_before.jpg" alt="Interiør før renovering">
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="el">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Elinstallation</span>
+          <h2>12 V, 24 V og systemopbygning</h2>
+        </div>
+
+        <article class="feature-card">
+          <div class="feature-copy">
+            <h3>Ny elektrisk installation</h3>
+            <p>
+              Båden fik nye 12 V- og 24 V-systemer med kabeltrækning, dimensionering og opbygning
+              af eldiagrammer. Installationen omfattede batteripakker, inverter, sikringer og
+              kabelføring. Arbejdet på 230 V-installationen blev udført med hjælp fra en
+              autoriseret fagperson.
+            </p>
+          </div>
+          <div class="feature-media">
+            <img src="images/boat_after.jpg" alt="Den færdige båd og dens installationer">
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="plc">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Automation</span>
+          <h2>PLC- og SCADA-styring</h2>
+        </div>
+
+        <article class="feature-card reverse">
+          <div class="feature-copy">
+            <h3>Samlet betjening fra touchskærm</h3>
+            <p>
+              Som en del af den tekniske opbygning blev der lavet et PLC-baseret system til
+              styring af blandt andet lys, pumper og andre hjælpefunktioner. Funktionerne betjenes
+              fra en touchskærm med et SCADA-interface, så udstyr kan aktiveres og overvåges fra
+              én samlet brugerflade.
+            </p>
+            <p>
+              Skærmen viser også de tilsluttede analoge værdier fra motorerne. Det gør det muligt
+              at følge relevante driftsdata og få et hurtigt overblik over bådens tekniske status.
+            </p>
+          </div>
+
+          <!-- Tilføj billeder som images/plc.jpg og images/scada.jpg. Indtil da vises pladsholdere. -->
+          <div class="feature-media media-pair">
+            <div class="image-slot">
+              <img src="images/plc.jpg" alt="PLC-installation på båden" onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
+              <div class="image-placeholder" hidden>
+                <strong>Billede af PLC</strong>
+                <small>Gem billedet som images/plc.jpg</small>
+              </div>
+            </div>
+            <div class="image-slot">
+              <img src="images/scada.jpg" alt="SCADA-programmet på bådens touchskærm" onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
+              <div class="image-placeholder" hidden>
+                <strong>Billede af SCADA-skærm</strong>
+                <small>Gem billedet som images/scada.jpg</small>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
     <section>
-      <a class="btn" href="index.html">← Tilbage til forsiden</a>
+      <div class="container">
+        <article class="story-card">
+          <h3>Erfaring fra projektet</h3>
+          <p>
+            Renoveringen gav praktisk erfaring med mekaniske systemer, svejsning, montage,
+            elinstallation og systemintegration. Det langvarige forløb krævede samtidig
+            planlægning, prioritering og løbende fejlfinding, når nye udfordringer viste sig.
+          </p>
+        </article>
+      </div>
     </section>
 
+    <section id="galleri">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Galleri</span>
+          <h2>Renoveringen i billeder</h2>
+          <p>Klik på et billede for at åbne det i stor størrelse.</p>
+        </div>
+
+        <div class="gallery-card">
+          <div class="thumbnail-gallery">
+            <button class="thumbnail-button" type="button" onclick="openLightbox(0)" aria-label="Åbn galleribillede 1"><img src="images/img_001.jpg" alt="Renovering af stålbåd, billede 1"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(1)" aria-label="Åbn galleribillede 2"><img src="images/img_002.jpg" alt="Renovering af stålbåd, billede 2"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(2)" aria-label="Åbn galleribillede 3"><img src="images/img_003.jpg" alt="Renovering af stålbåd, billede 3"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(3)" aria-label="Åbn galleribillede 4"><img src="images/img_004.jpg" alt="Renovering af stålbåd, billede 4"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(4)" aria-label="Åbn galleribillede 5"><img src="images/img_005.jpg" alt="Renovering af stålbåd, billede 5"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(5)" aria-label="Åbn galleribillede 6"><img src="images/img_006.jpg" alt="Renovering af stålbåd, billede 6"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(6)" aria-label="Åbn galleribillede 7"><img src="images/img_007.jpg" alt="Renovering af stålbåd, billede 7"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(7)" aria-label="Åbn galleribillede 8"><img src="images/img_008.jpg" alt="Renovering af stålbåd, billede 8"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(8)" aria-label="Åbn galleribillede 9"><img src="images/img_009.jpg" alt="Renovering af stålbåd, billede 9"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(9)" aria-label="Åbn galleribillede 10"><img src="images/img_010.jpg" alt="Renovering af stålbåd, billede 10"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(10)" aria-label="Åbn galleribillede 11"><img src="images/img_011.jpg" alt="Renovering af stålbåd, billede 11"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(11)" aria-label="Åbn galleribillede 12"><img src="images/img_012.jpg" alt="Renovering af stålbåd, billede 12"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(12)" aria-label="Åbn galleribillede 13"><img src="images/img_013.jpg" alt="Renovering af stålbåd, billede 13"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(13)" aria-label="Åbn galleribillede 14"><img src="images/img_014.jpg" alt="Renovering af stålbåd, billede 14"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(14)" aria-label="Åbn galleribillede 15"><img src="images/img_015.jpg" alt="Renovering af stålbåd, billede 15"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(15)" aria-label="Åbn galleribillede 16"><img src="images/img_016.jpg" alt="Renovering af stålbåd, billede 16"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(16)" aria-label="Åbn galleribillede 17"><img src="images/img_017.jpg" alt="Renovering af stålbåd, billede 17"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(17)" aria-label="Åbn galleribillede 18"><img src="images/img_018.jpg" alt="Renovering af stålbåd, billede 18"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(18)" aria-label="Åbn galleribillede 19"><img src="images/img_019.jpg" alt="Renovering af stålbåd, billede 19"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(19)" aria-label="Åbn galleribillede 20"><img src="images/img_020.jpg" alt="Renovering af stålbåd, billede 20"></button>
+            <button class="thumbnail-button" type="button" onclick="openLightbox(20)" aria-label="Åbn galleribillede 21"><img src="images/img_021.jpg" alt="Renovering af stålbåd, billede 21"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Billedvisning">
+    <button class="lightbox-control lightbox-close" type="button" onclick="closeLightbox()" aria-label="Luk billedvisning">&times;</button>
+    <button class="lightbox-control lightbox-prev" type="button" onclick="changeSlide(-1)" aria-label="Forrige billede">&#10094;</button>
+    <img class="lightbox-content" id="lightbox-img" alt="Stort galleribillede">
+    <button class="lightbox-control lightbox-next" type="button" onclick="changeSlide(1)" aria-label="Næste billede">&#10095;</button>
   </div>
 
-  <div id="lightbox" class="lightbox">
-    <span class="close" onclick="closeLightbox()">&times;</span>
-    <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
-    <img class="lightbox-content" id="lightbox-img" alt="Galleri billede">
-    <span class="next" onclick="changeSlide(1)">&#10095;</span>
-  </div>
+  <footer>
+    <div class="container">
+      <p>© 2026 Morten Raabjerg Nielsen</p>
+    </div>
+  </footer>
 
   <script>
     const images = [
-      "images/img_001.jpg",
-      "images/img_002.jpg",
-      "images/img_003.jpg",
-      "images/img_004.jpg",
-      "images/img_005.jpg",
-      "images/img_006.jpg",
-      "images/img_007.jpg",
-      "images/img_008.jpg",
-      "images/img_009.jpg",
-      "images/img_010.jpg",
-      "images/img_011.jpg",
-      "images/img_012.jpg",
-      "images/img_013.jpg",
-      "images/img_014.jpg",
-      "images/img_015.jpg",
-      "images/img_016.jpg",
-      "images/img_017.jpg",
-      "images/img_018.jpg",
-      "images/img_019.jpg",
-      "images/img_020.jpg",
-      "images/img_021.jpg"
+      "images/img_001.jpg", "images/img_002.jpg", "images/img_003.jpg",
+      "images/img_004.jpg", "images/img_005.jpg", "images/img_006.jpg",
+      "images/img_007.jpg", "images/img_008.jpg", "images/img_009.jpg",
+      "images/img_010.jpg", "images/img_011.jpg", "images/img_012.jpg",
+      "images/img_013.jpg", "images/img_014.jpg", "images/img_015.jpg",
+      "images/img_016.jpg", "images/img_017.jpg", "images/img_018.jpg",
+      "images/img_019.jpg", "images/img_020.jpg", "images/img_021.jpg"
     ];
 
     let currentIndex = 0;
 
     function openLightbox(index) {
       currentIndex = index;
-      document.getElementById("lightbox").style.display = "flex";
+      const lightbox = document.getElementById("lightbox");
       document.getElementById("lightbox-img").src = images[currentIndex];
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
     }
 
     function closeLightbox() {
-      document.getElementById("lightbox").style.display = "none";
+      document.getElementById("lightbox").setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
     }
 
     function changeSlide(step) {
-      currentIndex += step;
-
-      if (currentIndex < 0) {
-        currentIndex = images.length - 1;
-      }
-
-      if (currentIndex >= images.length) {
-        currentIndex = 0;
-      }
-
+      currentIndex = (currentIndex + step + images.length) % images.length;
       document.getElementById("lightbox-img").src = images[currentIndex];
     }
 
-    document.addEventListener("keydown", function(event) {
-      const lightbox = document.getElementById("lightbox");
-      if (lightbox.style.display === "flex") {
-        if (event.key === "ArrowRight") changeSlide(1);
-        if (event.key === "ArrowLeft") changeSlide(-1);
-        if (event.key === "Escape") closeLightbox();
-      }
+    document.addEventListener("keydown", function (event) {
+      const isOpen = document.getElementById("lightbox").getAttribute("aria-hidden") === "false";
+      if (!isOpen) return;
+      if (event.key === "ArrowRight") changeSlide(1);
+      if (event.key === "ArrowLeft") changeSlide(-1);
+      if (event.key === "Escape") closeLightbox();
     });
 
-    document.getElementById("lightbox").addEventListener("click", function(e) {
-      if (e.target.id === "lightbox") {
-        closeLightbox();
-      }
+    document.getElementById("lightbox").addEventListener("click", function (event) {
+      if (event.target.id === "lightbox") closeLightbox();
     });
   </script>
-
 </body>
 </html>
